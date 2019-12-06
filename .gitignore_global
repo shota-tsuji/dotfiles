@@ -1,0 +1,45 @@
+*.pdf
+# ignore files associated "tex"
+*.aux
+*.dvi
+*.fdb_latexmk
+*.fls
+*.log
+*.nav
+*.out
+*.snm
+*.synctex.gz
+*.toc
+# Bibliography of 'tex'
+*.bbl
+*.blg
+
+# ignore image files
+*.png
+*.jpg
+
+# ignore Excel files and document files(office?)
+*.xlsx
+*.doc
+
+# ignore for contest files(sql, tbl)
+*.sql
+*.tbl
+
+# ignore execution file & binary files
+*.bin
+*.out
+
+# ignore compressed file
+*.gz
+*.tar
+
+# ignore haskell files
+*.dyn_hi
+*.dyn_o
+*.hi
+*.o
+
+# ignore input files for "Programming Competision"
+*.in
+*.input
