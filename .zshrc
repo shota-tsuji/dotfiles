@@ -256,3 +256,27 @@ export SPARK_HOME=/usr/local/spark
 export PATH=$PATH:$SPARK_HOME/bin
 
 #alias sbt='docker run --tty --interactive --volume $PWD:/app bigtruedata/sbt'
+export GOPATH=$HOME/Work
+export PATH=$GOPATH/bin:$PATH
+function work { cd ~/Work; }
+function repo {
+	local path=$(ghq list --full-path | peco --query "$LBUFFER")
+	if [ -n "$path" ]; then
+		if [ -t 1 ]; then
+			cd ${path}
+			echo 'jump to' ${path}
+		fi
+	fi
+}
+
+autoload -Uz vcs_info
+#precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+#zstyle ':vcs_info:git:*' formats '%b'
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
+zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
+zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
+zstyle ':vcs_info:*' actionformats '[%b|%a]'
+PROMPT='[%n@%m]'\$vcs_info_msg_0_'%# '
+precmd(){ vcs_info }
