@@ -134,7 +134,7 @@ set cursorcolumn
 "highlight Normal guibg=NONE ctermbg=NONE
 
 " コメントblue，選択行(light) gray
-highlight Normal ctermfg=blue ctermbg=gray
+"highlight Normal ctermfg=blue ctermbg=gray
 
 " テンプレートファイル(拡張子ごとに設定)
 " Adding Apr/29/2017
@@ -378,6 +378,7 @@ Plug 'plasticboy/vim-markdown'
 "Plug 'tyru/open-browser.vim'
 "Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'kannokanno/previm'
+Plug 'tomasr/molokai'
 call plug#end()
 
 "Add Jan/04/2018
