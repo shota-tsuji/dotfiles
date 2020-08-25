@@ -1,5 +1,5 @@
 [user]
-	name = shotaTJ
+	name = shota-tsuji
 	email = shotatuzi@gmail.com
 [push]
 	default = simple
@@ -15,3 +15,5 @@
 	ls = !git ls-files -t|perl -pe 's/\\/.*/\\//'|uniq -c
 	la = ls-files -cdmokt
 	ll = !git ls-files -cdmokt|perl -pe 's/\\/.*/\\//'|grep -v '/'
+[ghq]
+  root = ~/Work/src
