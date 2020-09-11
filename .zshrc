@@ -288,7 +288,8 @@ function peco-find() {
 	local file_path=""
 
 	if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
-		search_root=`git rev-parse --show-toplevel`
+		#search_root=`git rev-parse --show-toplevel`
+		search_root=`git rev-parse --show-cdup`
 	else
 		search_root=`pwd`
 	fi
