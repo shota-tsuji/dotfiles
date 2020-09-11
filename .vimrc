@@ -65,15 +65,15 @@ set incsearch
 :set hlsearch
 " Adding Apr/07/2017
 " 画面上でタブ文字が占める幅
-set tabstop=2
+set tabstop=4
 " 自動インデントでずれる幅
-set shiftwidth=2
+set shiftwidth=0
 " タブ入力を複数の空白入力に置き換えない
-"set noexpandtab
+set noexpandtab
 " 行頭の余白内でTabを打ち込むと、shifthwidthの数だけインデントする
 set smarttab
 " 連続した空白に対してTab-keyやBackspace-keyでカーソルが動く幅
-set softtabstop=2
+set softtabstop=-1
 " 改行時に前の行のインデントを継続する
 set autoindent
 " autoindentと同様であるが、C構文を認識
