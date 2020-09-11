@@ -292,15 +292,19 @@ function peco-find() {
 	else
 		search_root=`pwd`
 	fi
-	file_path="$(find ${search_root} -maxdepth 5 | peco)"
-	BUFFER="${current_buffer} ${file_path}"
+	#file_path="$(find ${search_root} -maxdepth 5 | grep -v '.git' | peco --query "$LBUFFER")"
+	#file_path="$(find ${search_root} -maxdepth 5 | sed '/.git/ d' | peco --query "$LBUFFER")"
+	#file_path="$(find ${search_root} -maxdepth 5 | sed '/.git/ d' | peco)"
+	file_path="$(find ${search_root} -maxdepth 5 -type d -and -name '.git' -and -prune -or -type f | peco)"
+	 find `pwd` -type d -and -name '.git' -and -prune -or -type f
+	BUFFER="${current_buffer}${file_path}"
 	CURSOR=$#BUFFER
 	zle clear-screen
 }
 zle -N peco-find
 
 # bind keys
-bindkey '^f' peco-find
+bindkey '^x^f' peco-find
 
 export TODO_DIR="$HOME/.todo"
 export EDITOR=vim
