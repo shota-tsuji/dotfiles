@@ -301,3 +301,6 @@ zle -N peco-find
 
 # bind keys
 bindkey '^f' peco-find
+
+export TODO_DIR="$HOME/.todo"
+export EDITOR=vim
