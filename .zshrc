@@ -296,7 +296,7 @@ function peco-find() {
 	#file_path="$(find ${search_root} -maxdepth 5 | grep -v '.git' | peco --query "$LBUFFER")"
 	#file_path="$(find ${search_root} -maxdepth 5 | sed '/.git/ d' | peco --query "$LBUFFER")"
 	#file_path="$(find ${search_root} -maxdepth 5 | sed '/.git/ d' | peco)"
-	file_path="$(find ${search_root} -maxdepth 5 -type d -and -name '.git' -and -prune -or -type f | peco)"
+	file_path="$(find ${search_root} -maxdepth 4 -type d -and -name '.git' -and -prune -or -type f | peco)"
 	 find `pwd` -type d -and -name '.git' -and -prune -or -type f
 	BUFFER="${current_buffer}${file_path}"
 	CURSOR=$#BUFFER
