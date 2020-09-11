@@ -280,3 +280,24 @@ zstyle ':vcs_info:*' formats "%F{green}%c%u(%b)%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 PROMPT='[%n@%m]'\$vcs_info_msg_0_'%# '
 precmd(){ vcs_info }
+
+# peco find directory
+function peco-find() {
+	local current_buffer=$BUFFER
+	local search_root=""
+	local file_path=""
+
+	if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+		search_root=`git rev-parse --show-toplevel`
+	else
+		search_root=`pwd`
+	fi
+	file_path="$(find ${search_root} -maxdepth 5 | peco)"
+	BUFFER="${current_buffer} ${file_path}"
+	CURSOR=$#BUFFER
+	zle clear-screen
+}
+zle -N peco-find
+
+# bind keys
+bindkey '^f' peco-find
