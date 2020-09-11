@@ -309,3 +309,5 @@ bindkey '^x^f' peco-find
 
 export TODO_DIR="$HOME/.todo"
 export EDITOR=vim
+
+export PATH="$HOME/bin:$PATH"
