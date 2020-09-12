@@ -16,17 +16,12 @@ function peco-find() {
 	local file_path=""
 
 	if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
-		#search_root=`git rev-parse --show-toplevel`
-		search_root=`git rev-parse --show-cdup`
+		search_root=`git rev-parse --show-cdup` # リポジトリへの相対的な位置を出力する
 	else
 		search_root=`pwd`
 	fi
-	#file_path="$(find ${search_root} -maxdepth 5 | grep -v '.git' | peco --query "$LBUFFER")"
-	#file_path="$(find ${search_root} -maxdepth 5 | sed '/.git/ d' | peco --query "$LBUFFER")"
-	#file_path="$(find ${search_root} -maxdepth 5 | sed '/.git/ d' | peco)"
-	file_path="$(find ${search_root} -maxdepth 4 -type d -and -name '.git' -and -prune -or -type f | peco)"
-	# find `pwd` -type d -and -name '.git' -and -prune -or -type f
-	BUFFER="${current_buffer}${file_path}"
+	file_path="$(find ${search_root} -maxdepth 4 -name "*" -not -path '*/.git*' | peco)"
+	BUFFER="${current_buffer} ${file_path}"
 	CURSOR=$#BUFFER
 	zle clear-screen
 }
