@@ -1,16 +1,11 @@
 
 # .zshrc
-
 # When you want to reload zsh files, type this command "exec zsh".
 
 # 環境変数
 export LANG=ja_JP.UTF-8
 #export PATH=$PATH:/usr/include/c++/4.8/
 export PATH=/usr/local/bin:/usr/bin:$PATH
-
-# Setting for prompt strings with 'promptinit'.
-#autoload -Uz promptinit
-#promptinit adam1
 
 ZSH_HOME="${HOME}/.zsh.d"
 # "-d 'file'" returns true if 'file' is a directory.
@@ -64,12 +59,10 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # 補完候補を、矢印でも選択できるようにする
 zstyle ':completion:*:default' menu select=2
 
-
 # ../ の後は今いるディレクトリを補完しない
 zstyle ':completion:*' ignore-parents parent pwd ..
 
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
-
 
 # 単語の区切り文字を指定する
 autoload -Uz select-word-style
@@ -78,9 +71,6 @@ select-word-style default
 zstyle ':zle:*' word-chars " /=;@:{},|"
 zstyle ':zle:*' word-style unspecified
 
-#===============================================================================
-
-
 #History設定===================================================================
 # ヒストリを保存するファイル
 HISTFILE=~/.zsh_history
@@ -88,7 +78,6 @@ HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 # 保存されるヒストリの件数
 SAVEHIST=1000000
-
 
 # 重複したディレクトリを追加しない
 setopt pushd_ignore_dups
@@ -104,54 +93,9 @@ setopt hist_ignore_space
 # ヒストリに保存するときに余分なスペースを削除する
 setopt hist_reduce_blanks
 
-#===============================================================================
-
-
 #色付け等の設定=================================================================
 # 色の設定(プロンプトに色付けをおこなう)
 autoload -U colors ; colors
-# Adding Mar/22/2017
-#local DEFAULT=%{$reset_color%}
-#local RED=%{$fg[red]%}
-#local GREEN=%{$fg[green]%}
-#local YELLOW=%{$fg[yellow]%}
-#local BLUE=%{$fg[blue]%}
-#local PURPLE=%{$fg[purple]%}
-#local CYAN=%{$fg[cyan]%}
-#local WHITE=%{$fg[white]%}
-
-# プロンプトの色付け
-#PROMPT='${fg[cyan]}[%n]${reset_color}
-#%~'
-# Adding Mar/22/2017
-#PROMPT='[%F{cyan}%B%n%b%f]%# '
-#RPROMPT='[%F{green}%B%~%b%f]'
-#PROMPT='[%B%n%b]%# '
-#PS1=$'\e[0;94m \e[0m'
-#PS1=$'[\e[0;94m%B%n%b\e[0m]%# '
-#PROMPT=$'[\e[0;94m%B%n%b\e[0m]%# '
-
-# precmd() {
-#	#print ""
-#	#print -P '[%F{blue}%B%n%b%f] at %F{green}%B%~%b%f'
-#	print -P '[%F{green}%B%n%b%f] %F{blue}%B%~%b%f'
-#}
-
-#PROMPT='[%F{blue}%B%n%b%f-%T] at %F{green}%B%~%b%f %# '
-#
-#PROMPT='%# '
-
-#RPROMPT='[%B%~%b]'
-#TRAPALRM () { zle reset-prompt }
-#TMOUT=100
-# Adding Apr/03/2017
-#PROMPT=\n'[%F{blue}%B%n%b%f]%# '
-
-## "%n" shows username.
-## "%m" shows hostname up to first '.'.
-#PROMPT="[%n@%m] %# "
-## Set "RPROMPT" to show nothing.
-#RPROMPT=""
 
 # Get 'ls' command colorized
 export LSCOLORS=exfxcxdxbxegedabagacad
@@ -160,10 +104,6 @@ export LS_COLORS='di=94:ln=35:so=32:pi=33:ex=92:bd=46;34:cd=43;34:su=41;30:sg=46
 # ファイル補完候補にも色付けをおこなう
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
-
-#========================================
-# Others
-#========================================
 # beepを無効化
 setopt no_beep
 # フローコントロールを無効化
@@ -175,16 +115,6 @@ setopt auto_cd
 # cdしたら自動的にpushdする
 setopt auto_pushd
 
-
-
-
-# Adding Apr/04/2017
-# execute 'ls' command automaticaly with 'cd' command
-#cd ()
-#{
-#	builtin cd "$@" && ls
-#}
-
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
@@ -194,8 +124,6 @@ eval "$(pyenv init -)"
 # for OpenCV2.4.11
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
 export PKG_CONFIG_PATH
-#パスを通す====================================================================
-# open-mpi
 
 # Adding Mar/22/2017
 #export HISTTIMEFORMAT='%F %T '
@@ -222,7 +150,6 @@ googletest() {
 	g++ -isystem ~/build/googletest/googletest/include/ -pthread "$@" ~/build/googletest/googletest/libgtest.a -o $myexec
 	./$myexec
 }
-#export -f googletest
 
 #Using the C++11 compiler:
 googletest11() {
@@ -249,6 +176,4 @@ export GOPATH=$HOME/Work
 export PATH=$GOPATH/bin:$PATH
 export TODO_DIR="$HOME/.todo"
 export EDITOR=vim
-
 export PATH="$HOME/bin:$PATH"
-
