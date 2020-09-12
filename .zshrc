@@ -17,7 +17,7 @@ if [ -d $ZSH_HOME -a -r $ZSH_HOME -a -x $ZSH_HOME ]; then
 		[[ ${i##*/} = *.zsh ]] && [ \( -f $i -o -h $i \) -a -r $i ] && . $i
 
 		# Show loaded files. (If No need, comment out below one line.)
-		echo $i
+		#echo $i
 	done
 fi
 

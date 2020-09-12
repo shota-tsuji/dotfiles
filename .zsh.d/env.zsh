@@ -19,8 +19,7 @@ export LANG=ja_JP.UTF-8
 #export PATH="/usr/share/texlive/texmf-dist:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+eval "$(pyenv init -)"	#eval "$(pyenv virtualenv-init -)"
 
 # haskell environment
 #export PATH="/home/shota/.local/bin:$PATH"
