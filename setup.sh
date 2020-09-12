@@ -4,16 +4,13 @@ DOT_FILES=(.zshrc .vimrc .tmux.conf .gitconfig .gitignore_global)
 for file in ${DOT_FILES[@]}
 do
 	dst_file=$HOME/$file
-	echo $file:
-	#ln -s $HOME/dotfiles/$file $HOME/$file
-	ln -s $(readlink -f $file) $HOME/$file
+	if [ -L $dst_file ]; then
+		echo "skip: " $dst_file "exists already."
+	else
+		echo "set : " $file:
+		ln -s $(readlink -f $file) $HOME/$file
+	fi
 done
-
-# init
-ZSH_DIR=$HOME/.zsh.d
-if [ ! -d $ZSH_DIR ]; then
-	mkdir $ZSH_DIR
-fi
 
 DIRS=(.zsh.d)
 for dir in ${DIRS[@]}
@@ -34,5 +31,10 @@ if [ ! -d $PECO_HOME ]; then
 fi
 
 PECO_CONFIG=.peco/config.json
-echo $HOME/$PECO_CONFIG
-ln -s $(readlink -f $PECO_CONFIG) $HOME/$PECO_CONFIG
+dst_peco_config=$HOME/$PECO_CONFIG
+if [ -L $dst_peco_config ]; then
+	echo "skip: " $dst_peco_config "exists already."
+else
+	echo $HOME/$PECO_CONFIG
+	ln -s $(readlink -f $PECO_CONFIG) $HOME/$PECO_CONFIG
+fi
