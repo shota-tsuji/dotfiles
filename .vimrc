@@ -5,8 +5,7 @@ augroup END
 
 " 構文チェック
 syntax enable
-" エンコーディング
-set encoding=utf-8
+set encoding=utf-8	" エンコーディング
 set fileencodings=utf-8
 "set fileencoding=UTF-8
 "set termencoding=UTF-8
@@ -268,7 +267,6 @@ function! s:plug.is_installed(name)
 	return has_key(self.plugs, a:name) ? isdirectory(self.plugs[a:name].dir) : 0
 endfunction
 
-
 if s:plug.is_installed("lightline.vim")
 	let g:indentLine_faster = 1
 	nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
@@ -352,7 +350,6 @@ if s:plug.is_installed('vim-smartinput')
 			\	})
 endif
 
-
 "if s:plug.is_installed('lervag/vimtex')
 "	"let b:did_vimtex_indent = 0
 "	"let b:did_inident = 0
@@ -371,13 +368,6 @@ endif
 "let g:acp_enableAtStartup = 0
 " Shellのように振る舞う
 "set completeopt=menu,preview
-" Adding Apr/28/2017
 :noremap \b cw\begin{<C-R>"}<CR>\end{<C-R>"}
-
-" Adding Mar/06/2017
-let fortran_free_source=1
-let fortran_have_tabs=1
-let fortran_more_precise=1
-let fortran_do_enddo=1
 
 runtime! vim-config/init/*.vim
