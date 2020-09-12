@@ -10,8 +10,7 @@ set encoding=utf-8
 set fileencodings=utf-8
 "set fileencoding=UTF-8
 "set termencoding=UTF-8
-" スクロールするときに下が見えるようにする
-set scrolloff=5
+set scrolloff=5		" スクロールするときに下が見えるようにする
 
 set noswapfile
 set nowritebackup
@@ -92,7 +91,6 @@ set cursorline
 " 列を強調表示する
 set cursorcolumn
 
-" Adding Apr/06/2017
 "hi Comment ctermfg=lightgray
 "highlight Comment ctermfg=green
 "highlight Normal ctermfg=252 ctermbg=233
@@ -113,18 +111,11 @@ set cursorcolumn
 "autocmd BufNewFile,BufRead *.md setfiletype markdown
 autocmd BufNewFile,BufRead *.py nnoremap <F5> :!python %
 
-
-
-" Adding Apr/17/2017
 augroup vimrcEx
 	au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
 				\ exe "normal g'\"" | endif
 augroup END
 "==============================================================================
-
-
-
-
 
 " マクロおよびキー設定=========================================================
 " 入力モード中に素早くjjと入力した場合はESCとみなす
@@ -233,11 +224,7 @@ noremap [Prefix]k <c-b><cr><cr>
 "autocmd MyAutoCmd QuickfixCmdPost make,grep,grepadd,vimgrep copen
 
 " QuickFixおよびHelpでは q でバッファを閉じる
-"autocmd MyAutoCmd FileType help,qf nnoremap <buffer> q <C-w>c
-
-"==============================================================================
-
-
+autocmd MyAutoCmd FileType help,qf nnoremap <buffer> q <C-w>c
 
 "NeoBundleLazy "thinca/vim-quickrun", {
 "			\ "autoload": {
@@ -264,8 +251,6 @@ noremap [Prefix]k <c-b><cr><cr>
 "let g:syntastic_check_on_open = 1
 "let g:syntastic_check_on_wq = 0
 "
-"
-"
 "NeoBundleLazy "davidhalter/jedi-vim", {
 "			\ "autoload": {
 "			\	"filetypes": ["python", "python3", "djangohtml"],
@@ -287,8 +272,6 @@ noremap [Prefix]k <c-b><cr><cr>
 "	" docstringを表示しない
 "	autocmd FileType python setlocal completeopt-=preview
 "endfunction
-"
-"
 "
 "NeoBundleLazy 'kana/vim-smartinput', {
 "			\ "autoload": {"insert": 1}}
@@ -321,12 +304,8 @@ noremap [Prefix]k <c-b><cr><cr>
 "			\	})
 "endfunction
 "
-
-
-" Adding Apr/05/2017
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/vim-easy-align'
-" On-demand loading
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'itchyny/lightline.vim'
@@ -347,7 +326,6 @@ Plug 'tomasr/molokai'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 
-"Add Jan/04/2018
 "au BufRead,BufNewFile *.md set filetype=markdown
 "let g:previm_open_cmd = 'firefox'
 let g:previm_open_cmd = 'google-chrome'
