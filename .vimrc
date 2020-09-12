@@ -16,17 +16,12 @@ set scrolloff=5
 set noswapfile
 set nowritebackup
 set nobackup
-" ビープ音を消す
-set vb t_vb=
+set vb t_vb=	" ビープ音を消す
 set novisualbell
-" 行・列の番号を右下に表示する
-set ruler
-" compatibleオプションをオフにする
-set nocompatible
-" 移動コマンドを使ったとき、行頭に移動しない
-set nostartofline
-" 対応括弧に<と>のペアを追加
-set matchpairs& matchpairs+=<:>
+set ruler		" 行・列の番号を右下に表示する
+set nocompatible	" compatibleオプションをオフにする
+set nostartofline	" 移動コマンドを使ったとき、行頭に移動しない
+set matchpairs& matchpairs+=<:>	" 対応括弧に<と>のペアを追加
 
 " クリップボードをデフォルトのレジスタとして指定する。後にYankRingを使うので、'unnamedplus'が存在しているかどうかで、設定を分ける必要がある
 if has('unnamedplus')
@@ -37,85 +32,55 @@ else
 	set clipboard& clipboard+=unnamed
 endif
 
-" 対応括弧をハイライト表示する
-set showmatch
-" 対応括弧の表示秒数を3秒にする
-set matchtime=3
-" ウィンドウの幅より長い行は折り返され、次の行に続けて表示される
-set wrap
-" 入力されているテキストの最大幅を無効化する
-set textwidth=0
-" インデントをshiftwidthの倍数に丸める
-set shiftround
-" 補完の際に大文字小文字の区別しない
-set infercase
+set showmatch	" 対応括弧をハイライト表示する
+set matchtime=3	" 対応括弧の表示秒数を3秒にする
+set wrap		" ウィンドウの幅より長い行は折り返され、次の行に続けて表示される
+set textwidth=0	" 入力されているテキストの最大幅を無効化する
+set shiftround	" インデントをshiftwidthの倍数に丸める
+set infercase	" 補完の際に大文字小文字の区別しない
 " 文字がない場所にもカーソルを移動できるようにする
 "set virtualedit=all
-" 変更中のファイルでも、保存しないで他のファイルを表示
-set hidden
-" 新しく開く代わりにすでに開いてあるバッファを開く
-set switchbuf=useopen
-" 小文字の検索でも大文字も見つかるようにする
-set ignorecase
-" ただし、大文字も含めた検索の場合はその通りに検索する
-set smartcase
-" インクリメンタルサーチをおこなう
-set incsearch
-" 検索結果をハイライト表示
-:set hlsearch
-" Adding Apr/07/2017
-" 画面上でタブ文字が占める幅
-set tabstop=4
-" 自動インデントでずれる幅
-set shiftwidth=0
-" タブ入力を複数の空白入力に置き換えない
-set noexpandtab
-" 行頭の余白内でTabを打ち込むと、shifthwidthの数だけインデントする
-set smarttab
-" 連続した空白に対してTab-keyやBackspace-keyでカーソルが動く幅
-set softtabstop=-1
-" 改行時に前の行のインデントを継続する
-set autoindent
+set hidden		" 変更中のファイルでも、保存しないで他のファイルを表示
+set switchbuf=useopen	" 新しく開く代わりにすでに開いてあるバッファを開く
+set ignorecase	" 小文字の検索でも大文字も見つかるようにする
+set smartcase	" ただし、大文字も含めた検索の場合はその通りに検索する
+set incsearch	" インクリメンタルサーチをおこなう
+:set hlsearch	" 検索結果をハイライト表示
+
+set tabstop=4		" 画面上でタブ文字が占める幅
+set shiftwidth=0	" 自動インデントでずれる幅
+set noexpandtab		" タブ入力を複数の空白入力に置き換えない
+set smarttab		" 行頭の余白内でTabを打ち込むと、shifthwidthの数だけインデントする
+set softtabstop=-1	" 連続した空白に対してTab-keyやBackspace-keyでカーソルが動く幅
+set autoindent		" 改行時に前の行のインデントを継続する
 " autoindentと同様であるが、C構文を認識
 " 改行時に入力された行の末尾に合わせて次の行のインデントを増減する
 set smartindent
-" カラー設定
-set t_Co=256
+
+set t_Co=256	" カラー設定
 "colorscheme hybrid
 colorscheme molokai
 
 "let g:htbrid_reduced_contrast = 1
 set background=dark
-" 行番号表示
-set number
-" タイトルをウィンドウ枠に表示
-set title
+set number	" 行番号表示
+set title	" タイトルをウィンドウ枠に表示
 set undolevels=300
-" コマンド・検索パターンの履歴
-set history=10000
-" IME設定
-set iminsert=0
+set history=10000	" コマンド・検索パターンの履歴
+set iminsert=0		" IME設定
 set imsearch=0
 set imdisable
-" ステータスライン
-set laststatus=2
-" メッセージ表示欄
-set cmdheight=1
-" 置換の時にgオプションをデフォルトで有効にする
-set gdefault
-" カーソルが何行目の何列目に置かれているかを表示する
-set ruler
-" コマンドを画面下に表示させる
-set showcmd
-" タブ補完
-set wildmenu
-"set wildmode=list:longest
-set wildmode=list:full
-" 最後まで検索を終えたら、次の検索で先頭に移る
-set wrapscan
 
-" カーソルの回り込みができるようにする
-set whichwrap=b,s,h,l,<,>,[,]
+set laststatus=2	" ステータスライン
+set cmdheight=1		" メッセージ表示欄
+set gdefault	" 置換の時にgオプションをデフォルトで有効にする
+set ruler		" カーソルが何行目の何列目に置かれているかを表示する
+set showcmd	" コマンドを画面下に表示させる
+set wildmenu	" タブ補完
+set wildmode=list:full	"set wildmode=list:longest
+set wrapscan	" 最後まで検索を終えたら、次の検索で先頭に移る
+
+set whichwrap=b,s,h,l,<,>,[,]	" カーソルの回り込みができるようにする
 
 set cindent
 "set mouse=a
@@ -371,7 +336,7 @@ Plug 'miyakogi/seiya.vim'
 Plug 'Yggdroot/IndentLine'
 "Plug 'lervag/vimtex'
 "Plug 'vim-latex/vim-latex'
-Plug 'lervag/vimtex'
+"Plug 'lervag/vimtex'
 "Plug 'w0gn/vim-hybrid'
 Plug 'plasticboy/vim-markdown'
 "Plug 'kannokanno/previm'
@@ -379,6 +344,7 @@ Plug 'plasticboy/vim-markdown'
 "Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'kannokanno/previm'
 Plug 'tomasr/molokai'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 
 "Add Jan/04/2018
@@ -447,7 +413,8 @@ endif
 
 if s:plug.is_installed("nerdtree")
 	" Open NERDTree with Ctrl+e
-	map <C-e> :NERDTreeToggle<CR>
+	"map <C-e> :NERDTreeToggle<CR>
+	nnoremap <silent><C-e> :NERDTreeToggle<CR>
 	" 隠しファイルをデフォルトで表示させる
 	"let NERDTreeShowHidden = 1
 endif
@@ -480,15 +447,15 @@ if s:plug.is_installed('vim-smartinput')
 endif
 
 
-if s:plug.is_installed('lervag/vimtex')
-	"let b:did_vimtex_indent = 0
-	"let b:did_inident = 0
-endif
-"let b:did_inident = 1
-
-" Adding Apr/14/2017
-" setting highlight-file for tex
-let g:tex_conceal = ''
+"if s:plug.is_installed('lervag/vimtex')
+"	"let b:did_vimtex_indent = 0
+"	"let b:did_inident = 0
+"endif
+""let b:did_inident = 1
+"
+"" Adding Apr/14/2017
+"" setting highlight-file for tex
+"let g:tex_conceal = ''
 
 " ハイライト色設定
 "highlight Pmenu ctermbg=4
@@ -507,3 +474,4 @@ let fortran_have_tabs=1
 let fortran_more_precise=1
 let fortran_do_enddo=1
 
+runtime! vim-config/init/*.vim
