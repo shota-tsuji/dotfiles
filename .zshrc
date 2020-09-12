@@ -185,17 +185,6 @@ setopt auto_pushd
 #	builtin cd "$@" && ls
 #}
 
-function peco-history-selection() {
-# BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
-# BUFFER=$(history 1 | sort -k1,1nr | perl -ne 'BEGIN { my @lines = (); }')
-	BUFFER=$(history 1 | sort -k1,1nr | perl -ne 'BEGIN { my @lines = (); } s/^\s*\d+\*?\s*//; $in=$_; if (!(grep {$in eq $_} @lines)) { push(@lines, $in); print $in; }' | peco --query "$LBUFFER")
-	CURSOR=${#BUFFER}
-	zle reset-prompt
-}
-
-zle -N peco-history-selection
-bindkey '^r' peco-history-selection
-
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
