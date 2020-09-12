@@ -60,3 +60,14 @@ function peco-cdr () {
 }
 zle -N peco-cdr
 bindkey '^E' peco-cdr
+
+function pdf () {
+	local pdf_dir="$HOME/Documents/Books/"
+	ls ${pdf_dir}
+	local selected_pdf="$(ls ${pdf_dir} | xargs readlink -f | peco --prompt="pdf >")"
+	if [ -n "$selected_pdf" ]; then
+		if [ -t 1 ]; then
+			evince ${selected_pdf}&
+		fi
+	fi
+}
