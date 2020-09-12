@@ -5,7 +5,7 @@
 # 環境変数
 export LANG=ja_JP.UTF-8
 #export PATH=$PATH:/usr/include/c++/4.8/
-export PATH=/usr/local/bin:/usr/bin:$PATH
+#export PATH=/usr/local/bin:/usr/bin:$PATH
 
 ZSH_HOME="${HOME}/.zsh.d"
 # "-d 'file'" returns true if 'file' is a directory.
@@ -115,63 +115,62 @@ setopt auto_cd
 # cdしたら自動的にpushdする
 setopt auto_pushd
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+#export PYENV_ROOT="$HOME/.pyenv"
+#export PATH="$PYENV_ROOT/bin:$PATH"
+#eval "$(pyenv init -)"
 
 #export PATH=~/CodeSourcery/Sourcery_G++_Lite/bin:$PATH
 
 # for OpenCV2.4.11
-PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
-export PKG_CONFIG_PATH
+#PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
+#export PKG_CONFIG_PATH
 
 # Adding Mar/22/2017
 #export HISTTIMEFORMAT='%F %T '
 # Add Sep/28/2017
 #export PATH="/usr/share/texlive:$PATH"
-export PATH="/usr/share/texlive/texmf-dist:$PATH"
+#export PATH="/usr/share/texlive/texmf-dist:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 # haskell environment
-export PATH="/home/shota/.local/bin:$PATH"
-export CXX='g++-7'
-export CC='gcc-7'
-export CMAKE_ROOT='/usr/local/share/cmake-3.11'
+#export PATH="/home/shota/.local/bin:$PATH"
+#export CXX='g++-7'
+#export CC='gcc-7'
+#export CMAKE_ROOT='/usr/local/share/cmake-3.11'
 
 #export PATH=$PATH:
-alias GTEST_DIR='~/build/googletest/googletest'
+#alias GTEST_DIR='~/build/googletest/googletest'
 #A shortcut function to compile and run your Google Tests. Usage:
 #			$ googletest ./mytest.cpp
-googletest() {
-	myexec='my_googletest'
-	g++ -isystem ~/build/googletest/googletest/include/ -pthread "$@" ~/build/googletest/googletest/libgtest.a -o $myexec
-	./$myexec
-}
+#googletest() {
+#	myexec='my_googletest'
+#	g++ -isystem ~/build/googletest/googletest/include/ -pthread "$@" ~/build/googletest/googletest/libgtest.a -o $myexec
+#	./$myexec
+#}
 
 #Using the C++11 compiler:
-googletest11() {
-	myexec='my_googletest'
-	g++ -std=c++11 -isystem ~/build/googletest/googletest/include/ -pthread "$@" ~/build/googletest/googletest/libgtest.a -o $myexec
-	./$myexec
-}
+#googletest11() {
+#	myexec='my_googletest'
+#	g++ -std=c++11 -isystem ~/build/googletest/googletest/include/ -pthread "$@" ~/build/googletest/googletest/libgtest.a -o $myexec
+#	./$myexec
+#}
 #export -f googletest11
-export GTEST_DIR=~/build/googletest/googletest
+#export GTEST_DIR=~/build/googletest/googletest
 
 #export hadoop for using bin/hadoop
-export PATH="/usr/local/hadoop/bin:$PATH"
-export PATH="~/Downloads/script:$PATH"
+#export PATH="/usr/local/hadoop/bin:$PATH"
+#export PATH="~/Downloads/script:$PATH"
 
-# export GOPATH
-export PATH=$PATH:$(go env GOPATH)/bin
-export GOPATH=$(go env GOPATH)
 
-export SPARK_HOME=/usr/local/spark
-export PATH=$PATH:$SPARK_HOME/bin
+#export SPARK_HOME=/usr/local/spark
+#export PATH=$PATH:$SPARK_HOME/bin
 
 #alias sbt='docker run --tty --interactive --volume $PWD:/app bigtruedata/sbt'
+export PATH=$PATH:$(go env GOPATH)/bin
+#export GOPATH=$(go env GOPATH)
 export GOPATH=$HOME/Work
 export PATH=$GOPATH/bin:$PATH
 export TODO_DIR="$HOME/.todo"
