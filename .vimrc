@@ -294,7 +294,6 @@ set runtimepath+=/home/shota/.vim/plugged/vim-hug-neovim-rpc/
 let g:deoplete#enable_at_startup = 1
 "call deoplete#custom#option('deoplete-options-yarp', v:true)
 
-
 "au BufRead,BufNewFile *.md set filetype=markdown
 "let g:previm_open_cmd = 'firefox'
 let g:previm_open_cmd = 'google-chrome'
@@ -352,32 +351,6 @@ endfunction
 "	let g:neocomplete#max_list = 20	
 "endif
 
-if s:plug.is_installed('vim-smartinput')
-	call smartinput#map_to_trigger('i', '<Space>', '<Space>', '<Space>')
-	call smartinput#define_rule({
-			\ 	'at'	: '(\%#)',
-			\	'char'	: '<Space>',
-			\	'input'	: '<Space><Space><Left>',
-			\	})
-	call smartinput#define_rule({
-			\	'at'	: '( \%# )',
-			\	'char'	: '<BS>',
-			\	'input'	: '<Del><BS>',
-			\	})
-	" 改行時に行末スペースの除去
-	call smartinput#define_rule({
-			\	'at'	: '\s\+\%#',
-			\	'char'	: '<CR>',
-			\	'input'	: "<C-o>:call setline('.', substitute(getline('.'), '\\s\\+$', '', ''))<CR><CR>",
-			\	})
-	" C++で;を忘れないようにする
-	call smartinput#define_rule({
-			\	'at'	: '\%(\<struct\>\|\<class\>\|\<enum\>\)\s*\w\+.*\%#',
-			\	'char'	: '{',
-			\	'input'	: '{};<Letf><Left>',
-			\	'filetype'	: ['cpp'],
-			\	})
-endif
 
 " ハイライト色設定
 "highlight Pmenu ctermbg=4
@@ -389,7 +362,7 @@ endif
 "set completeopt=menu,preview
 :noremap \b cw\begin{<C-R>"}<CR>\end{<C-R>"}
 
-:source ~/.vim/vim-config/init/plugin-checker.vim
+":source ~/.vim/vim-config/init/plugin-checker.vim
 
 runtime! vim-config/init/*.vim
 runtime! vim-config/plugins-config/*.vim
