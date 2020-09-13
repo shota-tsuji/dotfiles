@@ -23,7 +23,7 @@ function peco-find() {
 	file_path="$(find ${search_root} -maxdepth 4 -name "*" -not -path '*/.git*' | peco)"
 	BUFFER="${current_buffer} ${file_path}"
 	CURSOR=$#BUFFER
-	zle clear-screen
+	#zle clear-screen
 }
 zle -N peco-find
 
@@ -59,7 +59,7 @@ function peco-cdr () {
 	fi
 }
 zle -N peco-cdr
-bindkey '^E' peco-cdr
+bindkey '^O' peco-cdr
 
 function pdf () {
 	local pdf_dir="$HOME/Documents/Books/"
@@ -71,3 +71,29 @@ function pdf () {
 		fi
 	fi
 }
+
+function peco-vim-open-recent-file () {
+	local selected_file="$(egrep '^>' ~/.viminfo | cut -c3- | perl -E 'say for map { chomp; $_ =~ s/^~/$ENV{HOME}/e; -f $_ ? $_ : () } <STDIN>' | peco)"
+	if [ -n "$selected_file" ]; then
+		BUFFER="vim ${selected_file}" 
+	fi
+}
+zle -N peco-vim-open-recent-file
+bindkey '^V' peco-vim-open-recent-file
+
+function peco-git-checkout {
+	#local selected_branch="$(git branch | peco | sed 's/^[ \t]*//')"
+	local selected_branch="$(git branch | sed 's/^[ \t]*//' | grep -v '^[*]' | peco --prompt="branch >")"
+	#echo ${selected_branch}
+	#print -z "git checkout ${selected_branch}"
+	git checkout ${selected_branch} > /dev/null 2>&1
+	echo "Switched to branch '${selected_branch}'"
+	#print -z "git checkout $(sed 's/^[ \t]*//' selected_branch)"
+	#git branch | peco | xargs git checkout
+	#echo ${selected_branch}
+	#git checkout ${selected_branch}
+	#
+	#zle accept-line
+	#BUFFER="git checkout ${selected_branch}"
+}
+alias chch=peco-git-checkout
