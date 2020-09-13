@@ -1,3 +1,6 @@
+"let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
+"let $PATH = "~/.pyenv/shims:".$PATH
+
 ""let g:python3_host_prog = '/home/shota/.pyenv/versions/3.8.3/bin/python'
 "let g:python3_host_prog = '/home/shota/.pyenv/shims/python3'
 "if has('pythonx')
