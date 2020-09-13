@@ -70,3 +70,8 @@ noremap! <C-j> <esc>
 " <space>j, <space>kで画面送り
 noremap [Prefix]j <c-f><cr><cr>
 noremap [Prefix]k <c-b><cr><cr>
+
+" /{pattern}の入力中は'/'をタイプすると'\/'が入力される
+" ?`pattern}の入力中は'?'をタイプすると'\?'を入力される
+cnoremap <expr> / getcmdtype() == '/' ? '\/' : '/'
+cnoremap <expr> ? getcmdtype() == '?' ? '\?' : '?'
