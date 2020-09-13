@@ -3,6 +3,9 @@
 augroup MyAutoCmd autocmd!
 augroup END
 
+let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
+let $PATH = "~/.pyenv/shims:".$PATH
+
 " 構文チェック
 syntax enable
 set encoding=utf-8	" エンコーディング
@@ -231,12 +234,25 @@ cnoremap <expr> ? getcmdtype() == '?' ? '\?' : '?'
 "			\	})
 "endfunction
 "
+"let g:python3_host_prog = '/home/shota/.pyenv/versions/3.8.3/bin/python'
+let g:python3_host_prog = '/home/shota/.pyenv/shims/python3'
+if has('pythonx')
+	set pyxversion=3
+endif
+"if !has('nvim') " Vim 8 only
+"	pythonx import neovim
+"endif
+"if !has('nvim') " Vim 8 only
+"	"pythonx import pynvim
+"	pythonx import pynvim
+"endif
+
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'itchyny/lightline.vim'
-Plug 'Shougo/neocomplete.vim'
+"Plug 'Shougo/neocomplete.vim'
 Plug 'kana/vim-smartinput'
 Plug 'miyakogi/seiya.vim'
 Plug 'Yggdroot/IndentLine'
@@ -251,7 +267,59 @@ Plug 'plasticboy/vim-markdown'
 Plug 'kannokanno/previm'
 Plug 'tomasr/molokai'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'maralla/completor.vim'
+"Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'mattn/vim-goimports'
+"Plug 'lambdalisue/vim-pyenv'
+"if has('nvim')
+"	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"else
+"	Plug 'Shougo/deoplete.nvim'
+"	Plug 'roxma/nvim-yarp'
+"	Plug 'roxma/vim-hug-neovim-rpc'
+"endif
 call plug#end()
+
+" golang
+"let g:completor_gocode_binary = '/home/shota/Work/bin/gocode'
+let g:completor_auto_trigger = 1
+inoremap <expr> <Tab> pumvisible() ? "<C-N>" : "<C-R>=completor#do('complete')<CR>"
+if executable('golsp')
+  augroup LspGo
+    au!
+    autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'go-lang',
+        \ 'cmd': {server_info->['golsp', '-mode', 'stdio']},
+        \ 'whitelist': ['go'],
+        \ })
+    autocmd FileType go setlocal omnifunc=lsp#complete
+  augroup END
+endif
+
+nmap <silent> gd :LspDefinition<CR>
+nmap <silent> <f2> :LspRename<CR>
+nmap <silent> <Leader>d :LspTypeDefinition<CR>
+nmap <silent> <Leader>r :LspReferences<CR>
+nmap <silent> <Leader>i :LspImplementation<CR>
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+let g:asyncomplete_popup_delay = 200
+let g:lsp_text_edit_enabled = 0
+
+" set path
+set runtimepath+=/home/shota/.vim/plugged/deoplete.nvim/plugin/
+set runtimepath+=/home/shota/.vim/plugged/nvim-yarp/
+set runtimepath+=/home/shota/.vim/plugged/vim-hug-neovim-rpc/
+
+" setting of deoplete
+let g:deoplete#enable_at_startup = 1
+"call deoplete#custom#option('deoplete-options-yarp', v:true)
+
 
 "au BufRead,BufNewFile *.md set filetype=markdown
 "let g:previm_open_cmd = 'firefox'
@@ -273,47 +341,47 @@ if s:plug.is_installed("lightline.vim")
 	let g:lightline = { 'colorscheme' : 'wombat', }
 endif
 
-if s:plug.is_installed("neocomplete.vim")
-	let g:acp_enableAtStartup = 0
-	let g:neocomplete#enable_at_startup = 1
-	let g:neocomplete#enable_smart_case = 1
-	let g:neocomplete#sources#syntax#min_keyword_length = 3
-
-	" Define dictionary.
-	let g:neocomplete#sources#dictionary#dictionaries = {
-				\'default' : '',
-				\'vimshell' : $HOME.'/.vimshell_hist',
-				\'scheme' : $HOME.'/.gosh_completions'
-				\}
-
-	" Define keyword.
-	if !exists('g:neocomplete#keyword_patterns')
-		let g:neocomplete#keyword_patterns = {}
-	endif
-	let g:neocomplete#keyword_patterns['default'] = '\h\w'
-	
-	" Recommended key-mappings.
-	" <CR>: close popup and save indent.
-	inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-	function! s:my_cr_function()
-		return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-		" For no inserting <CR> key.
-	endfunction
-	" <TAB>: completion.
-	inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-	"inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-	inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-	" Close popup by <Space>
-	"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-	
-	" Enable omni completion.
-	autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-	" options.
-	"	let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-	"	inoremap <expr><C-g>	neocomplete#undo_completion()
-	"	inoremap <expr><C-l>	neocomplete#complete_common_string()
-	let g:neocomplete#max_list = 20	
-endif
+"if s:plug.is_installed("neocomplete.vim")
+"	let g:acp_enableAtStartup = 0
+"	let g:neocomplete#enable_at_startup = 1
+"	let g:neocomplete#enable_smart_case = 1
+"	let g:neocomplete#sources#syntax#min_keyword_length = 3
+"
+"	" Define dictionary.
+"	let g:neocomplete#sources#dictionary#dictionaries = {
+"				\'default' : '',
+"				\'vimshell' : $HOME.'/.vimshell_hist',
+"				\'scheme' : $HOME.'/.gosh_completions'
+"				\}
+"
+"	" Define keyword.
+"	if !exists('g:neocomplete#keyword_patterns')
+"		let g:neocomplete#keyword_patterns = {}
+"	endif
+"	let g:neocomplete#keyword_patterns['default'] = '\h\w'
+"	
+"	" Recommended key-mappings.
+"	" <CR>: close popup and save indent.
+"	inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+"	function! s:my_cr_function()
+"		return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+"		" For no inserting <CR> key.
+"	endfunction
+"	" <TAB>: completion.
+"	inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+"	"inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+"	inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+"	" Close popup by <Space>
+"	"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+"	
+"	" Enable omni completion.
+"	autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+"	" options.
+"	"	let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+"	"	inoremap <expr><C-g>	neocomplete#undo_completion()
+"	"	inoremap <expr><C-l>	neocomplete#complete_common_string()
+"	let g:neocomplete#max_list = 20	
+"endif
 
 if s:plug.is_installed("nerdtree")
 	" Open NERDTree with Ctrl+e
