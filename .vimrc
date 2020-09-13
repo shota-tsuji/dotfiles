@@ -285,32 +285,6 @@ Plug 'mattn/vim-goimports'
 "endif
 call plug#end()
 
-" golang
-"let g:completor_gocode_binary = '/home/shota/Work/bin/gocode'
-let g:completor_auto_trigger = 1
-inoremap <expr> <Tab> pumvisible() ? "<C-N>" : "<C-R>=completor#do('complete')<CR>"
-if executable('golsp')
-  augroup LspGo
-    au!
-    autocmd User lsp_setup call lsp#register_server({
-        \ 'name': 'go-lang',
-        \ 'cmd': {server_info->['golsp', '-mode', 'stdio']},
-        \ 'whitelist': ['go'],
-        \ })
-    autocmd FileType go setlocal omnifunc=lsp#complete
-  augroup END
-endif
-
-nmap <silent> gd :LspDefinition<CR>
-nmap <silent> <f2> :LspRename<CR>
-nmap <silent> <Leader>d :LspTypeDefinition<CR>
-nmap <silent> <Leader>r :LspReferences<CR>
-nmap <silent> <Leader>i :LspImplementation<CR>
-let g:lsp_diagnostics_enabled = 1
-let g:lsp_diagnostics_echo_cursor = 1
-let g:asyncomplete_popup_delay = 200
-let g:lsp_text_edit_enabled = 0
-
 " set path
 set runtimepath+=/home/shota/.vim/plugged/deoplete.nvim/plugin/
 set runtimepath+=/home/shota/.vim/plugged/nvim-yarp/
@@ -335,11 +309,6 @@ function! s:plug.is_installed(name)
 	return has_key(self.plugs, a:name) ? isdirectory(self.plugs[a:name].dir) : 0
 endfunction
 
-if s:plug.is_installed("lightline.vim")
-	let g:indentLine_faster = 1
-	nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
-	let g:lightline = { 'colorscheme' : 'wombat', }
-endif
 
 "if s:plug.is_installed("neocomplete.vim")
 "	let g:acp_enableAtStartup = 0
@@ -383,14 +352,6 @@ endif
 "	let g:neocomplete#max_list = 20	
 "endif
 
-if s:plug.is_installed("nerdtree")
-	" Open NERDTree with Ctrl+e
-	"map <C-e> :NERDTreeToggle<CR>
-	nnoremap <silent><C-e> :NERDTreeToggle<CR>
-	" 隠しファイルをデフォルトで表示させる
-	"let NERDTreeShowHidden = 1
-endif
-
 if s:plug.is_installed('vim-smartinput')
 	call smartinput#map_to_trigger('i', '<Space>', '<Space>', '<Space>')
 	call smartinput#define_rule({
@@ -418,16 +379,6 @@ if s:plug.is_installed('vim-smartinput')
 			\	})
 endif
 
-"if s:plug.is_installed('lervag/vimtex')
-"	"let b:did_vimtex_indent = 0
-"	"let b:did_inident = 0
-"endif
-""let b:did_inident = 1
-"
-"" Adding Apr/14/2017
-"" setting highlight-file for tex
-"let g:tex_conceal = ''
-
 " ハイライト色設定
 "highlight Pmenu ctermbg=4
 "highlight PmenuSel ctermbg=1
@@ -438,4 +389,7 @@ endif
 "set completeopt=menu,preview
 :noremap \b cw\begin{<C-R>"}<CR>\end{<C-R>"}
 
+:source ~/.vim/vim-config/init/plugin-checker.vim
+
 runtime! vim-config/init/*.vim
+runtime! vim-config/plugins-config/*.vim
