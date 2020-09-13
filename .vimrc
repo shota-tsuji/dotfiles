@@ -234,85 +234,11 @@ cnoremap <expr> ? getcmdtype() == '?' ? '\?' : '?'
 "			\	})
 "endfunction
 "
-"let g:python3_host_prog = '/home/shota/.pyenv/versions/3.8.3/bin/python'
-let g:python3_host_prog = '/home/shota/.pyenv/shims/python3'
-if has('pythonx')
-	set pyxversion=3
-endif
-"if !has('nvim') " Vim 8 only
-"	pythonx import neovim
-"endif
-"if !has('nvim') " Vim 8 only
-"	"pythonx import pynvim
-"	pythonx import pynvim
-"endif
-
-" set path
-set runtimepath+=/home/shota/.vim/plugged/deoplete.nvim/plugin/
-set runtimepath+=/home/shota/.vim/plugged/nvim-yarp/
-set runtimepath+=/home/shota/.vim/plugged/vim-hug-neovim-rpc/
-
-" setting of deoplete
-let g:deoplete#enable_at_startup = 1
-"call deoplete#custom#option('deoplete-options-yarp', v:true)
-
 "au BufRead,BufNewFile *.md set filetype=markdown
 "let g:previm_open_cmd = 'firefox'
 let g:previm_open_cmd = 'google-chrome'
 
 "let vim_markdown_preview_github=2
-
-let s:plug = {
-			\ "plugs": get(g:, 'plugs', {})
-			\ }
-
-function! s:plug.is_installed(name)
-	return has_key(self.plugs, a:name) ? isdirectory(self.plugs[a:name].dir) : 0
-endfunction
-
-
-"if s:plug.is_installed("neocomplete.vim")
-"	let g:acp_enableAtStartup = 0
-"	let g:neocomplete#enable_at_startup = 1
-"	let g:neocomplete#enable_smart_case = 1
-"	let g:neocomplete#sources#syntax#min_keyword_length = 3
-"
-"	" Define dictionary.
-"	let g:neocomplete#sources#dictionary#dictionaries = {
-"				\'default' : '',
-"				\'vimshell' : $HOME.'/.vimshell_hist',
-"				\'scheme' : $HOME.'/.gosh_completions'
-"				\}
-"
-"	" Define keyword.
-"	if !exists('g:neocomplete#keyword_patterns')
-"		let g:neocomplete#keyword_patterns = {}
-"	endif
-"	let g:neocomplete#keyword_patterns['default'] = '\h\w'
-"	
-"	" Recommended key-mappings.
-"	" <CR>: close popup and save indent.
-"	inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-"	function! s:my_cr_function()
-"		return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-"		" For no inserting <CR> key.
-"	endfunction
-"	" <TAB>: completion.
-"	inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-"	"inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-"	inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-"	" Close popup by <Space>
-"	"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-"	
-"	" Enable omni completion.
-"	autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-"	" options.
-"	"	let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-"	"	inoremap <expr><C-g>	neocomplete#undo_completion()
-"	"	inoremap <expr><C-l>	neocomplete#complete_common_string()
-"	let g:neocomplete#max_list = 20	
-"endif
-
 
 " ハイライト色設定
 "highlight Pmenu ctermbg=4
