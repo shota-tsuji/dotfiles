@@ -51,6 +51,9 @@ endif
 "autocmd BufNewFile,BufRead *.md setfiletype markdown
 autocmd BufNewFile,BufRead *.py nnoremap <F5> :!python %
 
+autocmd BufNewFile,BufRead *.asm set filetype=nasm
+autocmd BufNewFile,BufRead *.inc set filetype=nasm
+
 augroup vimrcEx
 	au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
 				\ exe "normal g'\"" | endif

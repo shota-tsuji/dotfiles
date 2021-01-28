@@ -16,7 +16,7 @@ if g:_is_plugged("vim-smartinput")
 			\	'char'	: '<CR>',
 			\	'input'	: "<C-o>:call setline('.', substitute(getline('.'), '\\s\\+$', '', ''))<CR><CR>",
 			\	})
-	" C++で;を忘れないようにする
+"	" C++で;を忘れないようにする
 	call smartinput#define_rule({
 			\	'at'	: '\%(\<struct\>\|\<class\>\|\<enum\>\)\s*\w\+.*\%#',
 			\	'char'	: '{',
@@ -24,6 +24,7 @@ if g:_is_plugged("vim-smartinput")
 			\	'filetype'	: ['cpp'],
 			\	})
 endif
+
 
 "NeoBundleLazy 'kana/vim-smartinput', {
 "			\ "autoload": {"insert": 1}}

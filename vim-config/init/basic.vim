@@ -24,7 +24,8 @@ set switchbuf=useopen	" 新しく開く代わりにすでに開いてあるバ�
 set ignorecase	" 小文字の検索でも大文字も見つかるようにする
 set smartcase	" ただし、大文字も含めた検索の場合はその通りに検索する
 set incsearch	" インクリメンタルサーチをおこなう
-:set hlsearch	" 検索結果をハイライト表示
+":set hlsearch	" 検索結果をハイライト表示
+set hlsearch	" 検索結果をハイライト表示
 set number	" 行番号表示
 set title	" タイトルをウィンドウ枠に表示
 set undolevels=300
