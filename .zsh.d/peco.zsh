@@ -98,3 +98,16 @@ function peco-git-checkout {
 	#BUFFER="git checkout ${selected_branch}"
 }
 alias chch=peco-git-checkout
+
+function peco-forward-change-directory {
+    #local selected_dir="$(find ./ -maxdepth 5 -type d | grep -v git | grep -v "許可がありません" | peco)"
+    local selected_dir="$(find ./ -maxdepth 5 -type d 2>/dev/null | grep -v git | peco)"
+    
+    #find ./ -maxdepth 5 -type d | grep -v git | grep -v "許可がありません" | peco
+	if [ -n "$selected_dir" ]; then
+		BUFFER="cd ${selected_dir}"
+		zle accept-line
+	fi
+}
+zle -N peco-forward-change-directory
+alias c=peco-forward-change-directory

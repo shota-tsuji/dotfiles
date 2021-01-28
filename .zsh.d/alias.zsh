@@ -88,3 +88,6 @@ alias .5='cd ../../../../..'
 
 # LaTeX command using docker texlive container for Japanese
 alias docker-latex='docker run --rm -it -v $PWD:/workdir paperist/alpine-texlive-ja'
+alias c='clear'
+alias t='tmux'
+alias out='logout'
