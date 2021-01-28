@@ -43,3 +43,6 @@
 # ignore input files for "Programming Competision"
 *.in
 *.input
+
+*.o # output for asm
+go.sum # output of 'go install' for go.mod
