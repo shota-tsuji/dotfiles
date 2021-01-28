@@ -1,6 +1,6 @@
 
 # 環境変数
-export LANG=ja_JP.UTF-8
+# export LANG=ja_JP.UTF-8
 
 #export PYENV_ROOT="$HOME/.pyenv"
 #export PATH="$PYENV_ROOT/bin:$PATH"
@@ -63,3 +63,13 @@ export TODO_DIR="$HOME/.todo"
 export EDITOR=vim
 bindkey -e # This bindkey should come after 'EDITOR=vim'
 export PATH="$HOME/bin:$PATH"
+export GHQ_ROOT=$HOME/Work/src
+export WORK=$HOME/Work
+export PLENV_PATH=$WORK/src/github.com/tokuhirom/plenv # plenv binary
+export PATH=$PLENV_PATH/bin:$PATH
+eval "$(plenv init - zsh)"
+
+export LD_LIBRARY_PATH=${HOME}/local/lib/ # boost libraries etc...
+
+export PATH="/home/shota/Work/src/github.com/rbenv/rbenv/bin:$PATH"
+eval "$(rbenv init -)"
