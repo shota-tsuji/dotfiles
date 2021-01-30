@@ -26,8 +26,8 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias mkdir='mkdir -p'
 
-alias g++='g++ -std=c++11'
-alias clang++='clang++ -std=c++11'
+#alias g++='g++ -std=c++11'
+#alias clang++='clang++ -std=c++11'
 alias platex='platex -shell-escape'
 
 #alias lt='ls -t | head -10'
@@ -91,5 +91,5 @@ alias .5='cd ../../../../..'
 # LaTeX command using docker texlive container for Japanese
 alias docker-latex='docker run --rm -it -v $PWD:/workdir paperist/alpine-texlive-ja'
 #alias c='clear'
-alias t='tmux'
 alias out='logout'
+alias t='tmux'

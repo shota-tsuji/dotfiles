@@ -111,3 +111,33 @@ function peco-forward-change-directory {
 }
 zle -N peco-forward-change-directory
 alias c=peco-forward-change-directory
+
+function make-history-directory () {
+    if [ $# != 1 ]; then
+        echo "Just one directory name is needed." 1>&2
+        return 1
+    fi
+    mkdir $(date "+%Y-%m-%d-"$1)
+}
+alias mkhis=make-history-directory
+alias mkh=make-history-directory
+
+export HISTORY_BASE_DIRECTORY="$HOME/Work/history/"
+
+function change-directory-to-selected-history () {
+	#local path=$(ghq list --full-path | peco --query "$LBUFFER")
+    local selected_path="$(cd $HISTORY_BASE_DIRECTORY && ls $HISTORY_BASE_DIRECTORY | xargs readlink -f | peco --prompt="pdf >")"
+
+	if [ -n "$selected_path" -a -d "$selected_path" ]; then
+		#if [ -t 1 ]; then
+        #    echo ${selected_path}
+		#	cd ${selected_path}
+		#	echo 'jump to' ${selected_path}
+		#fi
+		cd ${selected_path}
+		echo 'jump to' ${selected_path}
+    else
+        echo ${selected_path}
+        echo "No such history directory."
+	fi
+}

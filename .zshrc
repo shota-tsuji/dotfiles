@@ -48,7 +48,7 @@ zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/s
 
 autoload -Uz select-word-style			# 単語の区切り文字を指定する
 select-word-style default
-zstyle ':zle:*' word-chars " /=;@:{},|"	# ここで指定した文字は単語区切りとみなされる
+zstyle ':zle:*' word-chars " /=;@:{}[]()<>,.-|*?!_~&#$%^"	# ここで指定した文字は単語区切りとみなされる
 zstyle ':zle:*' word-style unspecified
 
 HISTFILE=~/.zsh_history	# ヒストリを保存するファイル
