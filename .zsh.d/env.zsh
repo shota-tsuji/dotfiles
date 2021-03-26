@@ -61,7 +61,10 @@ export GOPATH=$HOME/Work
 export PATH=$GOPATH/bin:$PATH
 export TODO_DIR="$HOME/.todo"
 export EDITOR=vim
-bindkey -e # This bindkey should come after 'EDITOR=vim'
+# This bindkey should come after 'EDITOR=vim'
+#bindkey -e 
+
+bindkey -v
 export PATH="$HOME/bin:$PATH"
 export GHQ_ROOT=$HOME/Work/src
 export WORK=$HOME/Work

@@ -78,9 +78,25 @@ function peco-vim-open-recent-file () {
 	if [ -n "$selected_file" ]; then
 		BUFFER="vim ${selected_file}" 
 	fi
+	CURSOR=${#BUFFER}
 }
 zle -N peco-vim-open-recent-file
 bindkey '^V' peco-vim-open-recent-file
+
+function peco-select-file-from-current-directory () {
+    local current_buffer=$BUFFER
+    local selected_object="$(ls -a --color=none | peco)"
+    if [ -n "$selected_object" ]; then
+        BUFFER="${current_buffer}${selected_object}"
+    fi
+	CURSOR=${#BUFFER}
+}
+zle -N peco-select-file-from-current-directory
+bindkey '^J' peco-select-file-from-current-directory
+
+# cd .. & cd する bindkey
+# BUFFER と git status を見て出し分けする関数
+# ディレクトリの存在を見て出し分けする bindkey
 
 function peco-git-checkout {
 	#local selected_branch="$(git branch | peco | sed 's/^[ \t]*//')"
@@ -101,9 +117,10 @@ alias chch=peco-git-checkout
 
 function peco-forward-change-directory {
     #local selected_dir="$(find ./ -maxdepth 5 -type d | grep -v git | grep -v "許可がありません" | peco)"
-    local selected_dir="$(find ./ -maxdepth 5 -type d 2>/dev/null | grep -v git | peco)"
-    
     #find ./ -maxdepth 5 -type d | grep -v git | grep -v "許可がありません" | peco
+    #local selected_dir="$(find ./ -maxdepth 5 -type d 2>/dev/null | grep -v git | peco)"
+    local selected_dir="$(find ./ -maxdepth 5 -type d 2>/dev/null | grep -v '\.git' | peco)"
+    
 	if [ -n "$selected_dir" ]; then
 		BUFFER="cd ${selected_dir}"
 		zle accept-line
@@ -111,6 +128,7 @@ function peco-forward-change-directory {
 }
 zle -N peco-forward-change-directory
 alias c=peco-forward-change-directory
+bindkey '^]' peco-forward-change-directory 
 
 function make-history-directory () {
     if [ $# != 1 ]; then
