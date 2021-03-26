@@ -3,8 +3,10 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'itchyny/lightline.vim'
 Plug 'miyakogi/seiya.vim'
+Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-Plug 'kannokanno/previm'
+"Plug 'kannokanno/previm'
+Plug 'previm/previm'
 Plug 'tomasr/molokai'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'maralla/completor.vim'
@@ -37,5 +39,9 @@ Plug 'kovisoft/slimv'
 "	Plug 'roxma/nvim-yarp'
 "	Plug 'roxma/vim-hug-neovim-rpc'
 "endif
-Plug 'obcat/vim-hitspop'
+"Plug 'obcat/vim-hitspop'
+Plug 'osyo-manga/vim-anzu'
 call plug#end()
+
+let g:vim_markdown_folding_disabled = 1
+let g:previm_enable_realtime = 1
