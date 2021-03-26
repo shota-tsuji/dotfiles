@@ -64,8 +64,8 @@ inoremap <C-h> <Left>
 inoremap <C-l> <Right>
 
 " ESCキーの代わり
-imap <C-j> <esc>
-noremap! <C-j> <esc>
+"imap <C-j> <esc>
+"noremap! <C-j> <esc>
 
 " <space>j, <space>kで画面送り
 noremap [Prefix]j <c-f><cr><cr>
@@ -75,3 +75,19 @@ noremap [Prefix]k <c-b><cr><cr>
 " ?`pattern}の入力中は'?'をタイプすると'\?'を入力される
 cnoremap <expr> / getcmdtype() == '/' ? '\/' : '/'
 cnoremap <expr> ? getcmdtype() == '?' ? '\?' : '?'
+
+" vim-anzu
+"nmap n <Plug>(anzu-n-with-echo)
+"nmap N <Plug>(anzu-N-with-echo)
+"nmap * <Plug>(anzu-star-with-echo)
+"nmap # <Plug>(anzu-sharp-with-echo)
+"nmap n <Plug>(anzu-mode-n)
+"nmap N <Plug>(anzu-mode-N)
+nmap n <Plug>(anzu-n)
+nmap N <Plug>(anzu-N)
+nmap * <Plug>(anzu-star)
+nmap # <Plug>(anzu-sharp)
+" clear status
+"nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
+" statusline
+"set statusline=%{anzu#search_status()}"

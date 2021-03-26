@@ -20,3 +20,4 @@ set background=dark
 set cindent
 "set mouse=a
 "set ttymouse=xterm2
+highlight Comment ctermfg=lightblue
