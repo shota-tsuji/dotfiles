@@ -28,8 +28,11 @@ augroup ChangeBackGround
     autocmd!
     " フォーカスをcolorscheme 準拠に切り替え）
     " フォーカスを外した時（フォーカスしていないときの背景色に切り替え）
-    :autocmd FocusLost * execute('highlight Normal ' . g:InactiveBackGround)
-    :autocmd FocusLost * execute('highlight NonText '.g:InactiveBackGround)
-    :autocmd FocusLost * execute('highlight SpecialKey '.g:InactiveBackGround)
-    :autocmd FocusLost * execute('highlight EndOfBuffer '.g:InactiveBackGround)
+    ":autocmd FocusLost * execute('highlight Normal ' . g:InactiveBackGround)
+    ":autocmd FocusLost * execute('highlight NonText '.g:InactiveBackGround)
+    ":autocmd FocusLost * execute('highlight SpecialKey '.g:InactiveBackGround)
+    ":autocmd FocusLost * execute('highlight EndOfBuffer '.g:InactiveBackGround)
+    autocmd FocusLost * highlight Normal ctermbg=darkgray guibg=darkgray
+    autocmd WinLeave * 'highlight Normal ctermbg=darkgray guibg=darkgray'
+    "highlight Normal ctermbg=darkgray guibg=darkgray
 augroup end
