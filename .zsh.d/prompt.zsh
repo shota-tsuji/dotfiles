@@ -19,5 +19,10 @@ zstyle ':vcs_info:*' actionformats '[%b|%a]'
 #PROMPT='[%n:%~]'\$vcs_info_msg_0_'%# '
 PROMPT='[%~]'\$vcs_info_msg_0_'%# '
 #PROMPT='[%(!.%{\e[1;31m%}%n%{\e[0m%}.%{\e[1;31m%}%n%{\e[0m%})%n:%c]'\$vcs_info_msg_0_'%# '
-precmd(){ vcs_info }
+precmd(){ 
+    vcs_info
+    if [ -n "$TMUX" ]; then
+        tmux refresh-client -S
+    fi
+}
 

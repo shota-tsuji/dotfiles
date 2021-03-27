@@ -21,3 +21,15 @@ set cindent
 "set mouse=a
 "set ttymouse=xterm2
 highlight Comment ctermfg=lightblue
+
+" To override colorscheme, load after used-colorscheme.
+let g:InactiveBackGround = 'ctermbg=darkgray'
+augroup ChangeBackGround
+    autocmd!
+    " フォーカスをcolorscheme 準拠に切り替え）
+    " フォーカスを外した時（フォーカスしていないときの背景色に切り替え）
+    :autocmd FocusLost * execute('highlight Normal ' . g:InactiveBackGround)
+    :autocmd FocusLost * execute('highlight NonText '.g:InactiveBackGround)
+    :autocmd FocusLost * execute('highlight SpecialKey '.g:InactiveBackGround)
+    :autocmd FocusLost * execute('highlight EndOfBuffer '.g:InactiveBackGround)
+augroup end
