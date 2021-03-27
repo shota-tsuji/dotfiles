@@ -22,6 +22,11 @@ set cindent
 "set ttymouse=xterm2
 highlight Comment ctermfg=lightblue
 
+highlight Normal ctermbg=NONE guibg=NONE
+highlight NonText ctermbg=NONE guibg=NONE
+highlight SpecialKey ctermbg=NONE guibg=NONE
+highlight EndOfBuffer ctermbg=NONE guibg=NONE
+
 " To override colorscheme, load after used-colorscheme.
 let g:InactiveBackGround = 'ctermbg=darkgray'
 augroup ChangeBackGround
