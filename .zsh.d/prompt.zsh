@@ -5,6 +5,7 @@ PROMPT="[%n@%m] %# "
 RPROMPT=""
 
 autoload -Uz vcs_info
+autoload -Uz add-zsh-hook
 #precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
 #zstyle ':vcs_info:git:*' formats '%b'
@@ -26,3 +27,12 @@ precmd(){
     fi
 }
 
+function _update_vcs_info_msg() {
+    local prompt
+
+    prompt="dumy"
+
+    echo $prompt
+}
+
+add-zsh-hook precmd _update_vcs_info_msg
