@@ -33,7 +33,7 @@ function _update_vcs_info_msg() {
     local prompt
 
     if [[ -z ${vcs_info_msg_0_} ]]; then
-        prompt="empty"
+        prompt=""
     else
         messages+="message"
         prompt=$messages
