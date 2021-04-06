@@ -30,7 +30,11 @@ precmd(){
 function _update_vcs_info_msg() {
     local prompt
 
-    prompt="dumy"
+    if [[ -z ${vcs_info_msg_0_} ]]; then
+        prompt="empty"
+    else
+        prompt="filled"
+    fi
 
     echo $prompt
 }
