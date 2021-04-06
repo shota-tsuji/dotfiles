@@ -28,12 +28,15 @@ precmd(){
 }
 
 function _update_vcs_info_msg() {
+    # define 'messages' as array by '-a'
+    local -a messages
     local prompt
 
     if [[ -z ${vcs_info_msg_0_} ]]; then
         prompt="empty"
     else
-        prompt="filled"
+        messages+="message"
+        prompt=$messages
     fi
 
     echo $prompt
