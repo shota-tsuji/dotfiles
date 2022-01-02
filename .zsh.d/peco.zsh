@@ -63,8 +63,9 @@ bindkey '^O' peco-cdr
 
 function pdf () {
 	local pdf_dir="$HOME/Documents/Books/"
-	ls ${pdf_dir}
-	local selected_pdf="$(ls ${pdf_dir} | xargs readlink -f | peco --prompt="pdf >")"
+	#ls ${pdf_dir}
+	#local selected_pdf="$(ls ${pdf_dir} | xargs readlink -f | peco --prompt="pdf >")"
+	local selected_pdf="$(cd $pdf_dir && ls ${pdf_dir} | xargs readlink -f | peco --prompt="pdf >")"
 	if [ -n "$selected_pdf" ]; then
 		if [ -t 1 ]; then
 			evince ${selected_pdf}&
@@ -77,9 +78,25 @@ function peco-vim-open-recent-file () {
 	if [ -n "$selected_file" ]; then
 		BUFFER="vim ${selected_file}" 
 	fi
+	CURSOR=${#BUFFER}
 }
 zle -N peco-vim-open-recent-file
 bindkey '^V' peco-vim-open-recent-file
+
+function peco-select-file-from-current-directory () {
+    local current_buffer=$BUFFER
+    local selected_object="$(ls -a --color=none | peco)"
+    if [ -n "$selected_object" ]; then
+        BUFFER="${current_buffer}${selected_object}"
+    fi
+	CURSOR=${#BUFFER}
+}
+zle -N peco-select-file-from-current-directory
+bindkey '^J' peco-select-file-from-current-directory
+
+# cd .. & cd する bindkey
+# BUFFER と git status を見て出し分けする関数
+# ディレクトリの存在を見て出し分けする bindkey
 
 function peco-git-checkout {
 	#local selected_branch="$(git branch | peco | sed 's/^[ \t]*//')"
@@ -97,3 +114,48 @@ function peco-git-checkout {
 	#BUFFER="git checkout ${selected_branch}"
 }
 alias chch=peco-git-checkout
+
+function peco-forward-change-directory {
+    #local selected_dir="$(find ./ -maxdepth 5 -type d | grep -v git | grep -v "許可がありません" | peco)"
+    #find ./ -maxdepth 5 -type d | grep -v git | grep -v "許可がありません" | peco
+    #local selected_dir="$(find ./ -maxdepth 5 -type d 2>/dev/null | grep -v git | peco)"
+    local selected_dir="$(find ./ -maxdepth 5 -type d 2>/dev/null | grep -v '\.git' | peco)"
+    
+	if [ -n "$selected_dir" ]; then
+		BUFFER="cd ${selected_dir}"
+		zle accept-line
+	fi
+}
+zle -N peco-forward-change-directory
+alias c=peco-forward-change-directory
+bindkey '^]' peco-forward-change-directory 
+
+function make-history-directory () {
+    if [ $# != 1 ]; then
+        echo "Just one directory name is needed." 1>&2
+        return 1
+    fi
+    mkdir $(date "+%Y-%m-%d-"$1)
+}
+alias mkhis=make-history-directory
+alias mkh=make-history-directory
+
+export HISTORY_BASE_DIRECTORY="$HOME/Work/history/"
+
+function change-directory-to-selected-history () {
+	#local path=$(ghq list --full-path | peco --query "$LBUFFER")
+    local selected_path="$(cd $HISTORY_BASE_DIRECTORY && ls $HISTORY_BASE_DIRECTORY | xargs readlink -f | peco --prompt="pdf >")"
+
+	if [ -n "$selected_path" -a -d "$selected_path" ]; then
+		#if [ -t 1 ]; then
+        #    echo ${selected_path}
+		#	cd ${selected_path}
+		#	echo 'jump to' ${selected_path}
+		#fi
+		cd ${selected_path}
+		echo 'jump to' ${selected_path}
+    else
+        echo ${selected_path}
+        echo "No such history directory."
+	fi
+}

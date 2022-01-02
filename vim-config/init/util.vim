@@ -27,7 +27,7 @@ endif
 
 "au BufRead,BufNewFile *.md set filetype=markdown
 "let g:previm_open_cmd = 'firefox'
-let g:previm_open_cmd = 'google-chrome'
+"let g:previm_open_cmd = 'google-chrome'
 
 "let vim_markdown_preview_github=2
 "
@@ -50,6 +50,9 @@ endif
 " Load files
 "autocmd BufNewFile,BufRead *.md setfiletype markdown
 autocmd BufNewFile,BufRead *.py nnoremap <F5> :!python %
+
+autocmd BufNewFile,BufRead *.asm set filetype=nasm
+autocmd BufNewFile,BufRead *.inc set filetype=nasm
 
 augroup vimrcEx
 	au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
