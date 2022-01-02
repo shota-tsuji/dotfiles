@@ -1,7 +1,3 @@
-# "%n" shows username.
-# "%m" shows hostname up to first '.'.
-PROMPT="[%n@%m] %# "
-# Set "RPROMPT" to show nothing.
 RPROMPT=""
 
 autoload -Uz vcs_info
@@ -14,35 +10,13 @@ zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
 zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
 zstyle ':vcs_info:*' formats "%F{green}%c%u(%b)%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
-#MY_PROMPT='[%n@%m]'\$vcs_info_msg_0_'%# '
-#PROMPT='[%n@%m:%c]'\$vcs_info_msg_0_'%# '
-#
-#PROMPT='[%n:%~]'\$vcs_info_msg_0_'%# '
-PROMPT='[%~]'\$vcs_info_msg_0_'%# '
-#PROMPT='[%(!.%{\e[1;31m%}%n%{\e[0m%}.%{\e[1;31m%}%n%{\e[0m%})%n:%c]'\$vcs_info_msg_0_'%# '
+
+PROMPT='%B%F{green}[%n]%f'\$vcs_info_msg_0_'%b%B%#%b '
+#PROMPT='%B%{$bg[green]%}[%n]%{$reset_color%}%b%B'\$vcs_info_msg_0_'%b%B%#%b '
+PROMPT='%B[%n]'\$vcs_info_msg_0_'%b%B%#%b '
 precmd(){ 
     vcs_info
     if [ -n "$TMUX" ]; then
         tmux refresh-client -S
     fi
 }
-
-function _update_vcs_info_msg() {
-    # define 'messages' as array by '-a'
-    local -a messages
-    local prompt
-
-    if [[ -z ${vcs_info_msg_0_} ]]; then
-        prompt=""
-    else
-        messages+="message"
-        [[ -n "$vcs_info_msg_0_" ]] && messages+=( "%F{green}${vcs_info_msg_0_}%f" )
-        [[ -n "$vcs_info_msg_1_" ]] && messages+=( "%F{yellow}${vcs_info_msg_1_}%f" )
-        [[ -n "$vcs_info_msg_2_" ]] && messages+=( "%F{red}${vcs_info_msg_2_}%f" )
-        prompt=$messages
-    fi
-
-    echo $prompt
-}
-
-add-zsh-hook precmd _update_vcs_info_msg

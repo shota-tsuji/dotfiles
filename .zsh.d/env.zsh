@@ -57,7 +57,8 @@ eval "$(pyenv init -)"	#eval "$(pyenv virtualenv-init -)"
 #alias sbt='docker run --tty --interactive --volume $PWD:/app bigtruedata/sbt'
 export PATH=$PATH:$(go env GOPATH)/bin
 #export GOPATH=$(go env GOPATH)
-export GOPATH=$HOME/Work
+#export GOPATH=$HOME/Work
+export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$PATH
 export TODO_DIR="$HOME/.todo"
 export EDITOR=vim
@@ -66,7 +67,8 @@ export EDITOR=vim
 
 bindkey -v
 export PATH="$HOME/bin:$PATH"
-export GHQ_ROOT=$HOME/Work/src
+#export GHQ_ROOT=$HOME/Work/src
+export GHQ_ROOT=$HOME/.ghq
 export WORK=$HOME/Work
 export PLENV_PATH=$WORK/src/github.com/tokuhirom/plenv # plenv binary
 export PATH=$PLENV_PATH/bin:$PATH

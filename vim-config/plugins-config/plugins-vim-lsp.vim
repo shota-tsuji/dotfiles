@@ -25,3 +25,17 @@ if executable('golsp')
     autocmd FileType go setlocal omnifunc=lsp#complete
   augroup END
 endif
+
+function! s:on_lsp_buffer_enabled() abort
+    "nnoremap K <plug>(lsp-hover)
+    nmap <buffer> K <plug>(lsp-hover)
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> <f2> <plug>(lsp-rename)
+endfunction
+
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server
+    " registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END

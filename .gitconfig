@@ -19,4 +19,6 @@
     ss = status -s
     co = checkout
 [ghq]
-  root = ~/Work/src
+    root = ~/.ghq
+#[includeIf "gitdir:~/.ghq/"]
+#    path = ~/.gitconfig

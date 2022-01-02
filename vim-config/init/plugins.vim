@@ -41,6 +41,10 @@ Plug 'kovisoft/slimv'
 "endif
 "Plug 'obcat/vim-hitspop'
 Plug 'osyo-manga/vim-anzu'
+Plug 'yegappan/mru'
+Plug 'liuchengxu/vista.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'rust-lang/rust.vim'
 call plug#end()
 
 let g:vim_markdown_folding_disabled = 1

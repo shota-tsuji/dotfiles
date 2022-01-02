@@ -91,3 +91,14 @@ nmap # <Plug>(anzu-sharp)
 "nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
 " statusline
 "set statusline=%{anzu#search_status()}"
+
+" [plugin(MRU)]
+nnoremap m :MRU<CR>
+" nnoremap q :q<CR>
+
+augroup QfAutoCommands
+    autocmd!
+
+    " Auto-close quickfix window
+    " autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>
+augroup END
