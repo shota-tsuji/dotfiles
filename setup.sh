@@ -35,6 +35,6 @@ dst_peco_config=$HOME/$PECO_CONFIG
 if [ -L $dst_peco_config ]; then
 	echo "skip: " $dst_peco_config "exists already."
 else
-	echo $HOME/$PECO_CONFIG
+    echo "set : " $HOME/$PECO_CONFIG
 	ln -s $(readlink -f $PECO_CONFIG) $HOME/$PECO_CONFIG
 fi

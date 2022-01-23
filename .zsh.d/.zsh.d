@@ -1,1 +1,0 @@
-/home/shota/dotfiles/.zsh.d
