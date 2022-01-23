@@ -22,11 +22,12 @@ else
     echo "symbolic link:" $dst_peco_config "does not exists."
 fi
 
-dirs=(.zsh.d)
+dirs=(.zsh.d .vim/vim-config)
 for dir in ${dirs[@]}
 do
 	dst_dir=$HOME/$dir
 	if [ -L $dst_dir ]; then
+        echo "unlink: $dst_dir"
         unlink $dst_dir
 	else
         echo "symbolic link:" $dst_dir "does not exists."

@@ -17,7 +17,7 @@ for dir in ${DIRS[@]}
 do
 	dst_dir=$HOME/$dir
 	if [ -L $dst_dir ]; then
-		echo "skip: " $dst_dir "exists already."
+		echo "skip: $dst_dir exists already."
 	else
 		echo "set : " $dst_dir
 		ln -s $(readlink -f $dir) $dst_dir
@@ -35,6 +35,17 @@ dst_peco_config=$HOME/$PECO_CONFIG
 if [ -L $dst_peco_config ]; then
 	echo "skip: " $dst_peco_config "exists already."
 else
-    echo "set : " $HOME/$PECO_CONFIG
+    echo "set : $HOME/$PECO_CONFIG"
 	ln -s $(readlink -f $PECO_CONFIG) $HOME/$PECO_CONFIG
+fi
+
+# vim-config
+target=vim-config
+#relative_distination=".vim/vim-config"
+absolute_distination=$HOME/.vim/vim-config
+if [ -L $absolute_distination ]; then
+	echo "skip: " $absolute_distination "exists already."
+else
+    echo "set : $absolute_distination"
+    ln -s $(readlink -f $target) $absolute_distination
 fi
