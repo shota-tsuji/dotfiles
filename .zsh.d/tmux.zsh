@@ -22,3 +22,8 @@ tmux has-session >/dev/null 2>&1 && if [ -z "${TMUX}" ]; then
 	echo '% tmux list-windows -a'
 	tmux list-windows
 fi
+
+alias c='tmux copy-mode'
+alias ts='tmux choose-window'
+alias ta='tmux attach-session'
+alias tl='tmux list-sessions'
