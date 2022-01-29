@@ -76,3 +76,5 @@ setopt auto_pushd		# cdしたら自動的にpushdする
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/shota/.sdkman"
 [[ -s "/home/shota/.sdkman/bin/sdkman-init.sh" ]] && source "/home/shota/.sdkman/bin/sdkman-init.sh"
+
+eval "$(starship init zsh)"
