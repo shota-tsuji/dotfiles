@@ -49,3 +49,6 @@ go.sum # output of 'go install' for go.mod
 
 # Ignore .idea project directory, using relative path from each .gitignore
 /.idea/
+
+# A directory created by `cargo` command is ignored.
+/target/
