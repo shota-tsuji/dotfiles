@@ -22,8 +22,7 @@
 *.xlsx
 *.doc
 
-# ignore for contest files(sql, tbl)
-*.sql
+# ignore for contest files(tbl)
 *.tbl
 
 # ignore execution file & binary files
