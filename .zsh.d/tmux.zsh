@@ -27,3 +27,9 @@ alias c='tmux copy-mode'
 alias ts='tmux choose-window'
 alias ta='tmux attach-session'
 alias tl='tmux list-sessions'
+
+function _tmux_copy_mode() {
+    tmux copy-mode
+}
+zle -N tmux_copy_mode _tmux_copy_mode
+bindkey '^K' tmux_copy_mode
