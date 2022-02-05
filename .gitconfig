@@ -22,3 +22,7 @@
     root = ~/.ghq
 #[includeIf "gitdir:~/.ghq/"]
 #    path = ~/.gitconfig
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
