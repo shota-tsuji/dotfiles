@@ -100,6 +100,7 @@ alias g='git status -s'
 alias gc='git commit'
 alias gl='git log'
 alias git-log='git log'
+alias d='git diff'
 
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
