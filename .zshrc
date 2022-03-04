@@ -22,6 +22,7 @@ if [ -d $ZSH_HOME -a -r $ZSH_HOME -a -x $ZSH_HOME ]; then
 fi
 
 # 補完に関するオプション
+fpath=($fpath ~/.zsh/completion)
 autoload -U compinit
 compinit
 setopt auto_param_slash
