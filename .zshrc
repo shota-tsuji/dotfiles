@@ -2,7 +2,7 @@
 # .zshrc
 # When you want to reload zsh files, type this command "exec zsh".
 
-ZSH_HOME="${HOME}/.zsh.d"
+ZSH_HOME="${HOME}/.zsh.d/common"
 # "-d 'file'" returns true if 'file' is a directory.
 # "cond1 -a cond2" returns true if both conditions are ture.
 # "-r 'file'" returns true if 'file' is able to be read.
@@ -10,7 +10,7 @@ ZSH_HOME="${HOME}/.zsh.d"
 if [ -d $ZSH_HOME -a -r $ZSH_HOME -a -x $ZSH_HOME ]; then
 	for i in $ZSH_HOME/*; do
 		# Show loaded files. (If No need, comment out below one line.)
-		#echo $i
+		echo $i
 
 		# "${i##*/}" returns matched string from end up to '/'.
 		# This is a regular expression.
@@ -23,10 +23,22 @@ fi
 
 case ${OSTYPE} in
     darwin*)
-        echo mac
+        KUSTOMIZE_ZSH_DIR="${HOME}/.zsh.d/mac"
+        if [ -d $KUSTOMIZE_ZSH_DIR -a -r $KUSTOMIZE_ZSH_DIR -a -x $KUSTOMIZE_ZSH_DIR ]; then
+            for i in $KUSTOMIZE_ZSH_DIR/*; do
+                echo $i
+                [[ ${i##*/} = *.zsh ]] && [ \( -f $i -o -h $i \) -a -r $i ] && . $i
+            done
+        fi
         ;;
     linux*)
-        echo linux
+        KUSTOMIZE_ZSH_DIR="${HOME}/.zsh.d/linux"
+        if [ -d $KUSTOMIZE_ZSH_DIR -a -r $KUSTOMIZE_ZSH_DIR -a -x $KUSTOMIZE_ZSH_DIR ]; then
+            for i in $KUSTOMIZE_ZSH_DIR/*; do
+                echo $i
+                [[ ${i##*/} = *.zsh ]] && [ \( -f $i -o -h $i \) -a -r $i ] && . $i
+            done
+        fi
         ;;
 esac
 
@@ -73,7 +85,7 @@ setopt hist_reduce_blanks	# ヒストリに保存するときに余分なスペ�
 
 #色付け等の設定=================================================================
 autoload -U colors ; colors		# 色の設定(プロンプトに色付けをおこなう)
-export LSCOLORS=exfxcxdxbxegedabagacad	# Get 'ls' command colorized
+export LSCOLORS=GxHxcxdxCxegedabagacad
 export LS_COLORS='di=94:ln=35:so=32:pi=33:ex=92:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}	# ファイル補完候補にも色付けをおこなう
 
