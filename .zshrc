@@ -21,6 +21,15 @@ if [ -d $ZSH_HOME -a -r $ZSH_HOME -a -x $ZSH_HOME ]; then
 	done
 fi
 
+case ${OSTYPE} in
+    darwin*)
+        echo mac
+        ;;
+    linux*)
+        echo linux
+        ;;
+esac
+
 # 補完に関するオプション
 fpath=($fpath ~/.zsh/completion)
 autoload -U compinit
