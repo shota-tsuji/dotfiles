@@ -1,4 +1,8 @@
+#========================================
+# Alias
+#
 # If you want to display alias list, type 'alias' on the terminal.
+#========================================
 
 # Command short cuts to save time
 alias h='history'
@@ -13,9 +17,6 @@ alias vi=vim
 alias svi='sudo vim'
 alias edit='vim'
 
-#========================================
-# Alias
-#========================================
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
@@ -84,8 +85,5 @@ alias gc='git commit'
 alias gl='git log'
 alias git-log='git log'
 alias d='git diff'
-
-alias pbcopy='xsel --clipboard --input'
-alias pbpaste='xsel --clipboard --output'
 
 alias j='journalctl'
