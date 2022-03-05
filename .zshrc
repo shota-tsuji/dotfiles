@@ -10,7 +10,7 @@ ZSH_HOME="${HOME}/.zsh.d/common"
 if [ -d $ZSH_HOME -a -r $ZSH_HOME -a -x $ZSH_HOME ]; then
 	for i in $ZSH_HOME/*; do
 		# Show loaded files. (If No need, comment out below one line.)
-		echo $i
+		#echo $i
 
 		# "${i##*/}" returns matched string from end up to '/'.
 		# This is a regular expression.
@@ -26,7 +26,7 @@ case ${OSTYPE} in
         KUSTOMIZE_ZSH_DIR="${HOME}/.zsh.d/mac"
         if [ -d $KUSTOMIZE_ZSH_DIR -a -r $KUSTOMIZE_ZSH_DIR -a -x $KUSTOMIZE_ZSH_DIR ]; then
             for i in $KUSTOMIZE_ZSH_DIR/*; do
-                echo $i
+                #echo $i
                 [[ ${i##*/} = *.zsh ]] && [ \( -f $i -o -h $i \) -a -r $i ] && . $i
             done
         fi
@@ -35,7 +35,7 @@ case ${OSTYPE} in
         KUSTOMIZE_ZSH_DIR="${HOME}/.zsh.d/linux"
         if [ -d $KUSTOMIZE_ZSH_DIR -a -r $KUSTOMIZE_ZSH_DIR -a -x $KUSTOMIZE_ZSH_DIR ]; then
             for i in $KUSTOMIZE_ZSH_DIR/*; do
-                echo $i
+                #echo $i
                 [[ ${i##*/} = *.zsh ]] && [ \( -f $i -o -h $i \) -a -r $i ] && . $i
             done
         fi
@@ -99,4 +99,3 @@ setopt auto_pushd		# cdしたら自動的にpushdする
 export SDKMAN_DIR="/home/shota/.sdkman"
 [[ -s "/home/shota/.sdkman/bin/sdkman-init.sh" ]] && source "/home/shota/.sdkman/bin/sdkman-init.sh"
 
-eval "$(starship init zsh)"

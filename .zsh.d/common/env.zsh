@@ -73,3 +73,5 @@ export LD_LIBRARY_PATH=${HOME}/local/lib/ # boost libraries etc...
 
 export PATH="/home/shota/Work/src/github.com/rbenv/rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+eval "$(starship init zsh)"
