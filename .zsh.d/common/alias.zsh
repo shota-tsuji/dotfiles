@@ -68,3 +68,5 @@ alias git-log='git log'
 alias d='git diff'
 
 alias j='journalctl'
+alias ag-hidden='ag --hidden'
+alias ag-file='ag --files-with-matches'
