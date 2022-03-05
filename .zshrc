@@ -44,5 +44,7 @@ esac
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="${HOME}/.sdkman"
+export JAVA_HOME=${SDKMAN_DIR}/candidates/java/current
+export PATH=${JAVA_HOME}/bin:$PATH
 export SDKMAN_INIT_SCRIPT="${SDKMAN_DIR}/bin/sdkman-init.sh"
 [[ -s ${SDKMAN_INIT_SCRIPT} ]] && source ${SDKMAN_INIT_SCRIPT}
