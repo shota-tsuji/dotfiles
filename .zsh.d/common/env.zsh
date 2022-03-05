@@ -67,12 +67,7 @@ export EDITOR=vim
 
 bindkey -v
 export PATH="$HOME/bin:$PATH"
-#export GHQ_ROOT=$HOME/Work/src
-export GHQ_ROOT=$HOME/.ghq
 export WORK=$HOME/Work
-export PLENV_PATH=$WORK/src/github.com/tokuhirom/plenv # plenv binary
-export PATH=$PLENV_PATH/bin:$PATH
-eval "$(plenv init - zsh)"
 
 export LD_LIBRARY_PATH=${HOME}/local/lib/ # boost libraries etc...
 
