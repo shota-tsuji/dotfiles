@@ -43,5 +43,6 @@ case ${OSTYPE} in
 esac
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/shota/.sdkman"
-[[ -s "/home/shota/.sdkman/bin/sdkman-init.sh" ]] && source "/home/shota/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="${HOME}/.sdkman"
+export SDKMAN_INIT_SCRIPT="${SDKMAN_DIR}/bin/sdkman-init.sh"
+[[ -s ${SDKMAN_INIT_SCRIPT} ]] && source ${SDKMAN_INIT_SCRIPT}
