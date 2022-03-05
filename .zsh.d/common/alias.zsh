@@ -66,6 +66,7 @@ alias gc='git commit'
 alias gl='git log'
 alias git-log='git log'
 alias d='git diff'
+alias d-head='git diff HEAD'
 
 alias j='journalctl'
 alias ag-hidden='ag --hidden'
