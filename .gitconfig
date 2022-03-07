@@ -18,8 +18,8 @@
     s = status
     ss = status -s
     co = checkout
-[ghq]
-    root = ~/.ghq
+#[ghq]
+#    root = ~/.ghq
 #[includeIf "gitdir:~/.ghq/"]
 #    path = ~/.gitconfig
 [diff]

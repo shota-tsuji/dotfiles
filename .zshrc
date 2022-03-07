@@ -30,6 +30,7 @@ function load-zsh-scripts() {
 
 ZSH_HOME="${HOME}/.zsh.d/common"
 load-zsh-scripts ${ZSH_HOME}
+load-zsh-scripts ${HOME}/.zsh.d/company
 
 case ${OSTYPE} in
     darwin*)
