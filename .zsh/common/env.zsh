@@ -14,4 +14,3 @@ export WORK=$HOME/Work
 #export PATH="/home/shota/Work/src/github.com/rbenv/rbenv/bin:$PATH"
 #eval "$(rbenv init -)"
 
-eval "$(starship init zsh)"
