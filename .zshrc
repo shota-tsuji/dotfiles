@@ -32,6 +32,16 @@ function load-zsh-scripts() {
 #load-zsh-scripts ${ZSH_HOME}
 #load-zsh-scripts ${HOME}/.zsh.d/company
 
+# if .zsh is a directory && readable && executable
+ZSH_DIR="${HOME}/.zsh"
+if [ -d $ZSH_DIR ] && [ -r $ZSH_DIR ] && [ -x $ZSH_DIR ]; then
+    # loop for all <script>.zsh files under the .zsh directory
+    for file in ${ZSH_DIR}/**/*.zsh; do
+        # if readable
+        [ -r $file ] && source $file
+    done
+fi
+
 # case ${OSTYPE} in
 #     darwin*)
 #         KUSTOMIZE_ZSH_DIR="${HOME}/.zsh.d/mac"
