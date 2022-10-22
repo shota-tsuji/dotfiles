@@ -10,25 +10,25 @@ function repo {
 }
 
 # peco find directory
-function peco-find() {
-	local current_buffer=$BUFFER
-	local search_root=""
-	local file_path=""
-
-	if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
-		search_root=`git rev-parse --show-cdup` # リポジトリへの相対的な位置を出力する
-	else
-		search_root=`pwd`
-	fi
-	file_path="$(find ${search_root} -maxdepth 4 -name "*" -not -path '*/.git*' | peco)"
-	BUFFER="${current_buffer} ${file_path}"
-	CURSOR=$#BUFFER
-	#zle clear-screen
-}
-zle -N peco-find
-
-# bind keys
-bindkey '^x^f' peco-find
+#function peco-find() {
+#	local current_buffer=$BUFFER
+#	local search_root=""
+#	local file_path=""
+#
+#	if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+#		search_root=`git rev-parse --show-cdup` # リポジトリへの相対的な位置を出力する
+#	else
+#		search_root=`pwd`
+#	fi
+#	file_path="$(find ${search_root} -maxdepth 4 -name "*" -not -path '*/.git*' | peco)"
+#	BUFFER="${current_buffer} ${file_path}"
+#	CURSOR=$#BUFFER
+#	#zle clear-screen
+#}
+#zle -N peco-find
+#
+## bind keys
+#bindkey '^x^f' peco-find
 
 function peco-history-selection() {
 # BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
@@ -42,14 +42,14 @@ zle -N peco-history-selection
 bindkey '^r' peco-history-selection
 
 # cdr
-if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]]; then
-	autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
-	add-zsh-hook chpwd chpwd_recent_dirs
-	zstyle ':completion:*' recent-dirs-insert both
-	zstyle ':chpwd:*' recent-dirs-default true
-	zstyle ':chpwd:*' recent-dirs-max 1000
-	zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/chpwd-recent-dirs"
-fi
+#if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]]; then
+#	autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+#	add-zsh-hook chpwd chpwd_recent_dirs
+#	zstyle ':completion:*' recent-dirs-insert both
+#	zstyle ':chpwd:*' recent-dirs-default true
+#	zstyle ':chpwd:*' recent-dirs-max 1000
+#	zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/chpwd-recent-dirs"
+#fi
 
 function peco-cdr () {
     # Using sed, digits and spaces are shulinked.
@@ -119,20 +119,20 @@ function peco-git-checkout {
 }
 alias chch=peco-git-checkout
 
-function peco-forward-change-directory {
-    #local selected_dir="$(find ./ -maxdepth 5 -type d | grep -v git | grep -v "許可がありません" | peco)"
-    #find ./ -maxdepth 5 -type d | grep -v git | grep -v "許可がありません" | peco
-    #local selected_dir="$(find ./ -maxdepth 5 -type d 2>/dev/null | grep -v git | peco)"
-    local selected_dir="$(find ./ -maxdepth 5 -type d 2>/dev/null | grep -v '\.git' | peco)"
-    
-	if [ -n "$selected_dir" ]; then
-		BUFFER="cd ${selected_dir}"
-		zle accept-line
-	fi
-}
-zle -N peco-forward-change-directory
-alias c=peco-forward-change-directory
-bindkey '^]' peco-forward-change-directory 
+#function peco-forward-change-directory {
+#    #local selected_dir="$(find ./ -maxdepth 5 -type d | grep -v git | grep -v "許可がありません" | peco)"
+#    #find ./ -maxdepth 5 -type d | grep -v git | grep -v "許可がありません" | peco
+#    #local selected_dir="$(find ./ -maxdepth 5 -type d 2>/dev/null | grep -v git | peco)"
+#    local selected_dir="$(find ./ -maxdepth 5 -type d 2>/dev/null | grep -v '\.git' | peco)"
+#
+#	if [ -n "$selected_dir" ]; then
+#		BUFFER="cd ${selected_dir}"
+#		zle accept-line
+#	fi
+#}
+#zle -N peco-forward-change-directory
+#alias c=peco-forward-change-directory
+#bindkey '^]' peco-forward-change-directory
 
 function make-history-directory () {
     if [ $# != 1 ]; then
