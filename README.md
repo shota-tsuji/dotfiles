@@ -18,4 +18,5 @@ ln -s $(readlink -f starship.toml) $HOME/.config/
 ## zsh
 ```shell
 ln -s $(readlink -f .zshrc) $HOME/.zshrc
+ln -s $(readlink -f .zsh) $HOME/.zsh
 ```
