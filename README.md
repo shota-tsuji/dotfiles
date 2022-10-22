@@ -14,3 +14,8 @@ ln -s $(readlink -f config.fish) $HOME/.config/fish/
 ```shell
 ln -s $(readlink -f starship.toml) $HOME/.config/
 ```
+
+## zsh
+```shell
+ln -s $(readlink -f .zshrc) $HOME/.zshrc
+```

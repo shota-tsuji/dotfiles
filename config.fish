@@ -11,4 +11,7 @@ function fish_hybrid_key_bindings --description \
 end
 set -g fish_key_bindings fish_hybrid_key_bindings
 
+fish_add_path ~/.cargo/bin/
+
 starship init fish | source
+[ -s "/Users/shota-tsuji/.jabba/jabba.fish" ]; and source "/Users/shota-tsuji/.jabba/jabba.fish"

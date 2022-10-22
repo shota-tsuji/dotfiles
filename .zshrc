@@ -28,20 +28,20 @@ function load-zsh-scripts() {
 }
 
 
-ZSH_HOME="${HOME}/.zsh.d/common"
-load-zsh-scripts ${ZSH_HOME}
-load-zsh-scripts ${HOME}/.zsh.d/company
+#ZSH_HOME="${HOME}/.zsh.d/common"
+#load-zsh-scripts ${ZSH_HOME}
+#load-zsh-scripts ${HOME}/.zsh.d/company
 
-case ${OSTYPE} in
-    darwin*)
-        KUSTOMIZE_ZSH_DIR="${HOME}/.zsh.d/mac"
-        load-zsh-scripts ${KUSTOMIZE_ZSH_DIR}
-        ;;
-    linux*)
-        KUSTOMIZE_ZSH_DIR="${HOME}/.zsh.d/linux"
-        load-zsh-scripts ${KUSTOMIZE_ZSH_DIR}
-        ;;
-esac
+# case ${OSTYPE} in
+#     darwin*)
+#         KUSTOMIZE_ZSH_DIR="${HOME}/.zsh.d/mac"
+#         load-zsh-scripts ${KUSTOMIZE_ZSH_DIR}
+#         ;;
+#     linux*)
+#         KUSTOMIZE_ZSH_DIR="${HOME}/.zsh.d/linux"
+#         load-zsh-scripts ${KUSTOMIZE_ZSH_DIR}
+#         ;;
+# esac
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="${HOME}/.sdkman"
@@ -49,3 +49,6 @@ export JAVA_HOME=${SDKMAN_DIR}/candidates/java/current
 export PATH=${JAVA_HOME}/bin:$PATH
 export SDKMAN_INIT_SCRIPT="${SDKMAN_DIR}/bin/sdkman-init.sh"
 [[ -s ${SDKMAN_INIT_SCRIPT} ]] && source ${SDKMAN_INIT_SCRIPT}
+[ -s "/Users/shota-tsuji/.jabba/jabba.sh" ] && source "/Users/shota-tsuji/.jabba/jabba.sh"
+
+[[ -s "/Users/shota-tsuji/.gvm/scripts/gvm" ]] && source "/Users/shota-tsuji/.gvm/scripts/gvm"
