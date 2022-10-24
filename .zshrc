@@ -4,9 +4,12 @@ if [ -d $ZSH_DIR ] && [ -r $ZSH_DIR ] && [ -x $ZSH_DIR ]; then
     # loop for all <script>.zsh files under the .zsh directory
     for file in ${ZSH_DIR}/**/*.zsh; do
         # if readable
-        [ -r $file ] && source $file
+        [ -r $file ]  && source $file
     done
 fi
+
+# To overwrite key-bind, load bindkey options at last.
+source $ZSH_DIR/common/bindkey.zsh
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="${HOME}/.sdkman"
