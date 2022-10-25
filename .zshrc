@@ -10,6 +10,7 @@ fi
 
 # To overwrite key-bind, load bindkey options at last.
 source $ZSH_DIR/common/bindkey.zsh
+source $ZSH_DIR/common/peco.zsh
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="${HOME}/.sdkman"

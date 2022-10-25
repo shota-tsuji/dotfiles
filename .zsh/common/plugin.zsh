@@ -1,8 +1,7 @@
-# At first, start "zplug"
-source ~/.zplug/init.zsh
+source ~/antigen/antigen.zsh
+antigen bundle wfxr/forgit
 
-zplug "wfxr/forgit"
-#zplug "softmoth/zsh-vim-mode", use:zsh-vim-mode.plugin.zsh
-zplug "jeffreytse/zsh-vi-mode"
-
-zplug load
+ZVM_LAZY_KEYBINDINGS=false
+ZVM_INIT_MODE=sourcing
+antigen bundle jeffreytse/zsh-vi-mode
+antigen apply
