@@ -19,4 +19,5 @@ ln -s $(readlink -f starship.toml) $HOME/.config/
 ```shell
 ln -s $(readlink -f .zshrc) $HOME/.zshrc
 ln -s $(readlink -f .zsh) $HOME/.zsh
+git clone https://github.com/zsh-users/antigen.git ~/antigen
 ```
