@@ -1,16 +1,19 @@
 # if .zsh is a directory && readable && executable
 ZSH_DIR="${HOME}/.zsh"
-if [ -d $ZSH_DIR ] && [ -r $ZSH_DIR ] && [ -x $ZSH_DIR ]; then
-    # loop for all <script>.zsh files under the .zsh directory
-    for file in ${ZSH_DIR}/**/*.zsh; do
-        # if readable
-        [ -r $file ]  && source $file
-    done
-fi
+
+source $ZSH_DIR/alias.zsh
+source $ZSH_DIR/env.zsh
+source $ZSH_DIR/options.zsh
+source $ZSH_DIR/plugin.zsh
+source $ZSH_DIR/style.zsh
+
+source $ZSH_DIR/mac-alias.zsh
+#source $ZSH_DIR/linux-alias.zsh
+#source $ZSH_DIR/linux-completion.zsh
 
 # To overwrite key-bind, load bindkey options at last.
-source $ZSH_DIR/common/bindkey.zsh
-source $ZSH_DIR/common/peco.zsh
+source $ZSH_DIR/bindkey.zsh
+source $ZSH_DIR/peco.zsh
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="${HOME}/.sdkman"
