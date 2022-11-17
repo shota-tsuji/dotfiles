@@ -21,3 +21,14 @@ ln -s $(readlink -f .zshrc) $HOME/.zshrc
 ln -s $(readlink -f .zsh) $HOME/.zsh
 git clone https://github.com/zsh-users/antigen.git ~/antigen
 ```
+
+## git
+```shell
+ln -s $(readlink -f .gitconfig) $HOME/.gitconfig
+```
+
+## tmux
+```shell
+ln -s $(readlink -f .tmux.conf) $HOME/.tmux.conf
+```
+
