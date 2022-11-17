@@ -12,6 +12,7 @@ ln -s $(readlink -f config.fish) $HOME/.config/fish/
 
 ## Starship
 ```shell
+curl -sS https://starship.rs/install.sh | sh
 ln -s $(readlink -f starship.toml) $HOME/.config/
 ```
 
