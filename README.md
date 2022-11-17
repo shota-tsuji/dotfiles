@@ -33,3 +33,7 @@ ln -s $(readlink -f .gitconfig) $HOME/.gitconfig
 ln -s $(readlink -f .tmux.conf) $HOME/.tmux.conf
 ```
 
+## gvm
+```shell
+bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+```
