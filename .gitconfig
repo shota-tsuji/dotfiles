@@ -3,6 +3,7 @@
 	email = shotatuzi@gmail.com
 [push]
 	default = simple
+	autoSetupRemote = true
 [core]
 	editor = vim -c \"set fenc=utf-8\"
 	excludesfile = /home/shota/.gitignore_global
