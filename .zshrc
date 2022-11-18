@@ -8,6 +8,7 @@ case $(isOS) in
     linux*)
         source $ZSH_DIR/linux-alias.zsh
         source $ZSH_DIR/linux-completion.zsh
+        source $ZSH_DIR/linux-env.zsh
         ;;
     darwin*)
         source $ZSH_DIR/mac-alias.zsh
@@ -41,3 +42,5 @@ eval "$(starship init zsh)"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+[[ -s "/home/shota-tsuji/.gvm/scripts/gvm" ]] && source "/home/shota-tsuji/.gvm/scripts/gvm"

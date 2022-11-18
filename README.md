@@ -35,5 +35,5 @@ ln -s $(readlink -f .tmux.conf) $HOME/.tmux.conf
 
 ## gvm
 ```shell
-bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+zsh < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
 ```
