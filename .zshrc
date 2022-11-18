@@ -34,9 +34,7 @@ export JAVA_HOME=${SDKMAN_DIR}/candidates/java/current
 export PATH=${JAVA_HOME}/bin:$PATH
 export SDKMAN_INIT_SCRIPT="${SDKMAN_DIR}/bin/sdkman-init.sh"
 [[ -s ${SDKMAN_INIT_SCRIPT} ]] && source ${SDKMAN_INIT_SCRIPT}
-[ -s "/Users/shota-tsuji/.jabba/jabba.sh" ] && source "/Users/shota-tsuji/.jabba/jabba.sh"
 
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 eval "$(starship init zsh)"
 
 export NVM_DIR="$HOME/.nvm"
