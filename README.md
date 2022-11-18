@@ -37,3 +37,8 @@ ln -s $(readlink -f .tmux.conf) $HOME/.tmux.conf
 ```shell
 zsh < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
 ```
+
+## vim
+```shell
+ln -s $(readlink -f vim-config) $HOME/.vim/vim-config
+```
