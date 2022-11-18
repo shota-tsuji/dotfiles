@@ -1,10 +1,10 @@
 function isOS() {
-    return $(uname | tr '[:upper:]' '[:lower:]')
+    echo $(uname | tr '[:upper:]' '[:lower:]')
 }
 
 ZSH_DIR="${HOME}/.zsh"
 
-case $os_name in
+case $(isOS) in
     linux*)
         source $ZSH_DIR/linux-alias.zsh
         source $ZSH_DIR/linux-completion.zsh
