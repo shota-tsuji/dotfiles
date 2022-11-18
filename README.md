@@ -23,6 +23,11 @@ ln -s $(readlink -f .zsh) $HOME/.zsh
 git clone https://github.com/zsh-users/antigen.git ~/antigen
 ```
 
+### linux
+```shell
+ln -s $(readlink -f .zlogin) $HOME/.zlogin
+```
+
 ## git
 ```shell
 ln -s $(readlink -f .gitconfig) $HOME/.gitconfig
