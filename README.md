@@ -37,3 +37,11 @@ ln -s $(readlink -f .tmux.conf) $HOME/.tmux.conf
 ```shell
 zsh < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
 ```
+
+## vim
+```shell
+ln -s $(readlink -f vim-config) $HOME/.vim/vim-config
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+curl -fLo ~/.vim/colors/molokai.vim --create-dirs https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim
+```
+Reload .vimrc and `:PlugInstall` to install plugins.
