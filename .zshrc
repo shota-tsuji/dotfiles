@@ -1,15 +1,26 @@
-# if .zsh is a directory && readable && executable
+function isOS() {
+    return $(uname | tr '[:upper:]' '[:lower:]')
+}
+
 ZSH_DIR="${HOME}/.zsh"
+
+case $os_name in
+    linux*)
+        source $ZSH_DIR/linux-alias.zsh
+        source $ZSH_DIR/linux-completion.zsh
+        ;;
+    darwin*)
+        source $ZSH_DIR/mac-alias.zsh
+        ;;
+    *)
+        ;;
+esac
 
 source $ZSH_DIR/alias.zsh
 source $ZSH_DIR/env.zsh
 source $ZSH_DIR/options.zsh
 source $ZSH_DIR/plugin.zsh
 source $ZSH_DIR/style.zsh
-
-source $ZSH_DIR/mac-alias.zsh
-#source $ZSH_DIR/linux-alias.zsh
-#source $ZSH_DIR/linux-completion.zsh
 
 # To overwrite key-bind, load bindkey options at last.
 source $ZSH_DIR/bindkey.zsh
