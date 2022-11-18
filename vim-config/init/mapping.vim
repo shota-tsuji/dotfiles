@@ -1,4 +1,3 @@
-" マクロおよびキー設定=========================================================
 " 入力モード中に素早くjjと入力した場合はESCとみなす
 inoremap jj <Esc>
 inoremap fj <Esc>
@@ -53,19 +52,9 @@ noremap <Space>u <C-u>
 " 表示行単位で行移動する
 nnoremap <silent> j gj
 nnoremap <silent> k gk
-" インサードモードにおいても移動
-"inoremap <c-d> <delete>
-"inoremap <c-j> <down>
-"inoremap <c-k> <up>
-"inoremap <c-h> <left>
-"inoremap <c-l> <right>
 " Move left&right on Insert-mode. At first, default set <C-h> to empty.
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
-
-" ESCキーの代わり
-"imap <C-j> <esc>
-"noremap! <C-j> <esc>
 
 " <space>j, <space>kで画面送り
 noremap [Prefix]j <c-f><cr><cr>
@@ -77,20 +66,10 @@ cnoremap <expr> / getcmdtype() == '/' ? '\/' : '/'
 cnoremap <expr> ? getcmdtype() == '?' ? '\?' : '?'
 
 " vim-anzu
-"nmap n <Plug>(anzu-n-with-echo)
-"nmap N <Plug>(anzu-N-with-echo)
-"nmap * <Plug>(anzu-star-with-echo)
-"nmap # <Plug>(anzu-sharp-with-echo)
-"nmap n <Plug>(anzu-mode-n)
-"nmap N <Plug>(anzu-mode-N)
 nmap n <Plug>(anzu-n)
 nmap N <Plug>(anzu-N)
 nmap * <Plug>(anzu-star)
 nmap # <Plug>(anzu-sharp)
-" clear status
-"nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
-" statusline
-"set statusline=%{anzu#search_status()}"
 
 " [plugin(MRU)]
 nnoremap m :MRU<CR>
