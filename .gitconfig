@@ -20,7 +20,7 @@
     ch = checkout
     switch-pr = !gh pr list | awk '{print $5}' | peco | xargs git switch
     swpr = switch-pr
-    create-pr = !gh pr create --body "`cat pr-template.md`"
+    create-pr = !gh pr create --body-file pr-template.md
     open-pr = !gh pr view --web
 #[ghq]
 #    root = ~/.ghq
