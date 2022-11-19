@@ -16,7 +16,7 @@
 	ls = !git ls-files -t|perl -pe 's/\\/.*/\\//'|uniq -c
 	la = ls-files -cdmokt
 	ll = !git ls-files -cdmokt|perl -pe 's/\\/.*/\\//'|grep -v '/'
-    s = status
+    s = status -s
     ss = status -s
     co = checkout
 #[ghq]
