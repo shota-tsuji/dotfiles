@@ -17,8 +17,9 @@
 	la = ls-files -cdmokt
 	ll = !git ls-files -cdmokt|perl -pe 's/\\/.*/\\//'|grep -v '/'
     s = status -s
-    ss = status -s
-    co = checkout
+    ch = checkout
+    switch-pr = !gh pr list | awk '{print $5}' | peco | xargs git switch
+    swpr = switch-pr
 #[ghq]
 #    root = ~/.ghq
 #[includeIf "gitdir:~/.ghq/"]
