@@ -6,7 +6,7 @@ if g:_is_plugged("nerdtree")
 	" 隠しファイルをデフォルトで表示させる
 	let NERDTreeShowHidden = 1
 
-    let NERDTreeCustomOpenArgs = {'file':{'reuse': 'all', 'where': 't', 'stay': 1}}
+    let NERDTreeCustomOpenArgs = {'file':{'reuse': 'all', 'where': 't', 'keepopen':1, 'stay': 0}}
 
     " autocmd BufWinEnter * silent NERDTreeMirror
 endif

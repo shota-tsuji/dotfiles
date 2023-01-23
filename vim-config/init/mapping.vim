@@ -71,6 +71,10 @@ nmap N <Plug>(anzu-N)
 nmap * <Plug>(anzu-star)
 nmap # <Plug>(anzu-sharp)
 
+" tab navigation
+nnoremap gh :tabprev<CR>
+nnoremap gl :tabnext<CR>
+
 " [plugin(MRU)]
 nnoremap m :MRU<CR>
 " nnoremap q :q<CR>
