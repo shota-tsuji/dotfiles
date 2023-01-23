@@ -34,7 +34,7 @@ nnoremap <S-Down> <C-w>+<CR>
 
 nnoremap ; :
 nnoremap : ;
-"let mapleader = ","
+let mapleader = ","
 "noremap \ ,
 "noremap <Leader>h ^
 "noremap <Leader>l $
