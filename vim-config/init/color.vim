@@ -13,7 +13,8 @@
 
 set t_Co=256	" カラー設定
 "colorscheme hybrid
-colorscheme molokai
+"colorscheme molokai
+"colorscheme nord
 
 "let g:htbrid_reduced_contrast = 1
 set background=dark

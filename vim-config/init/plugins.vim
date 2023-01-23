@@ -7,6 +7,7 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'previm/previm'
 Plug 'tomasr/molokai'
+Plug 'arcticicestudio/nord-vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'maralla/completor.vim'
 Plug 'prabirshrestha/async.vim'
@@ -21,9 +22,9 @@ Plug 'Yggdroot/indentLine'
 Plug 'kovisoft/slimv'
 Plug 'osyo-manga/vim-anzu'
 Plug 'yegappan/mru'
-Plug 'liuchengxu/vista.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'rust-lang/rust.vim'
+Plug 'liuchengxu/vista.vim'
 call plug#end()
 
 let g:vim_markdown_folding_disabled = 1
