@@ -61,3 +61,8 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo 
 && sudo apt update \
 && sudo apt install gh -y
 ```
+
+## [streamich/git-cz: Semantic Git commits](https://github.com/streamich/git-cz) 
+```shell
+ ln -s $(readlink -f changelog.config.js) $HOME/
+```
