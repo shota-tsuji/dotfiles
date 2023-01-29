@@ -73,6 +73,9 @@ copy json file to your configuration directory.
 ```shell
 cp karabiner.json ~/.config/karabiner/
 ```
+Also karabiner.json is needed to affect on GUI. And the order of rules is important.
+The picture below shows it at 2023/01.
+![karabiner-gui](images/image-karabiner-ui-2023-01-30.png)
 
 If you updated its configuration, then also update repository's one.
 1. update your karabiner configuration by Karabiner-GUI.
