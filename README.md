@@ -66,3 +66,14 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo 
 ```shell
  ln -s $(readlink -f changelog.config.js) $HOME/
 ```
+
+## karabiner on Mac
+Because symbolic link does not affect correctlly with karabiner, just copy to load and update configuration.
+copy json file to your configuration directory.
+```shell
+cp karabiner.json ~/.config/karabiner/
+```
+
+If you updated its configuration, then also update repository's one.
+1. update your karabiner configuration by Karabiner-GUI.
+1. copy json file to this repository.
