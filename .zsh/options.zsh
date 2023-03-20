@@ -1,5 +1,11 @@
 # 補完に関するオプション
 fpath=($fpath ~/.zsh/completion)
+fpath+=~/.zfunc
+#compdef cargo
+#if command -v rustc >/dev/null 2>&1; then
+#        source "$(rustc --print sysroot)"/share/zsh/site-functions/_cargo
+#fi
+
 autoload -U compinit
 compinit
 setopt auto_param_slash
