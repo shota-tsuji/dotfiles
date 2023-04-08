@@ -96,7 +96,7 @@ function peco-select-file-from-current-directory () {
 	CURSOR=${#BUFFER}
 }
 zle -N peco-select-file-from-current-directory
-bindkey '^J' peco-select-file-from-current-directory
+#bindkey '^J' peco-select-file-from-current-directory
 
 # cd .. & cd する bindkey
 # BUFFER と git status を見て出し分けする関数
@@ -163,3 +163,13 @@ function change-directory-to-selected-history () {
         echo "No such history directory."
 	fi
 }
+
+function peco-cmd() {
+  #local cmd=$(find ${HOME}/commands -type f -not -name "_*" | xargs cat | peco --query "$LBUFFER")
+  BUFFER=$(grep -v -e "^\_" ${HOME}/commands | peco --query "$LBUFFER")
+  CURSOR=${#BUFFER}
+  zle reset-prompt
+}
+zle -N peco-cmd
+bindkey '^J' peco-cmd
+#alias cmd=peco-cmd
