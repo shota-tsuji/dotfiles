@@ -165,11 +165,9 @@ function change-directory-to-selected-history () {
 }
 
 function peco-cmd() {
-  #local cmd=$(find ${HOME}/commands -type f -not -name "_*" | xargs cat | peco --query "$LBUFFER")
   BUFFER=$(grep -v -e "^\_" ${HOME}/commands | peco --query "$LBUFFER")
   CURSOR=${#BUFFER}
   zle reset-prompt
 }
 zle -N peco-cmd
 bindkey '^J' peco-cmd
-#alias cmd=peco-cmd
