@@ -16,3 +16,8 @@ export WORK=$HOME/Work
 #export PATH="/home/shota/Work/src/github.com/rbenv/rbenv/bin:$PATH"
 #eval "$(rbenv init -)"
 
+# forgit
+export FORGIT_FZF_DEFAULT_OPTS='
+--preview-window=down
+--bind="ctrl-f:preview-page-down,ctrl-b:preview-page-up"
+'
