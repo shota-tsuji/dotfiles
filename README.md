@@ -11,6 +11,8 @@ mkdir $HOME/.config/peco/
 ln -s $(readlink -f .peco/config.json) $HOME/.config/peco/
 ```
 
+## [pyenv](https://github.com/pyenv/pyenv)
+
 ## fish
 ```shell
 ln -s $(readlink -f config.fish) $HOME/.config/fish/
