@@ -18,40 +18,44 @@ module.exports = {
   scopes: [],
   types: {
     chore: {
-      description: "ドキュメントの生成やビルドプロセス、ライブラリなどの変更",
-      value: "chore",
+      description: 'Build process or auxiliary tool changes',
+      value: 'chore'
     },
     ci: {
-      description: "CI用の設定やスクリプトに関する変更",
-      value: "ci",
+      description: 'CI related changes',
+      value: 'ci'
     },
     docs: {
-      description: "ドキュメントのみの変更",
-      value: "docs",
+      description: 'Documentation only changes',
+      value: 'docs'
     },
     feat: {
-      description: "新機能",
-      value: "feat",
+      description: 'A new feature',
+      value: 'feat'
     },
     fix: {
-      description: "不具合の修正",
-      value: "fix",
+      description: 'A bug fix',
+      value: 'fix'
     },
     perf: {
-      description: "パフォーマンス改善を行うためのコードの変更",
-      value: "perf",
+      description: 'A code change that improves performance',
+      value: 'perf'
     },
     refactor: {
-      description: "バグ修正や機能の追加を行わないコードの変更",
-      value: "refactor",
+      description: 'A code change that neither fixes a bug or adds a feature',
+      value: 'refactor'
+    },
+    release: {
+      description: 'Create a release commit',
+      value: 'release'
     },
     style: {
-      description: "コードの処理に影響しない変更（スペースや書式設定など）",
-      value: "style",
+      description: 'Markup, white-space, formatting, missing semi-colons...',
+      value: 'style'
     },
     test: {
-      description: "テストコードの変更",
-      value: "test",
+      description: 'Adding missing tests',
+      value: 'test'
     },
   },
 };
