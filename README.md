@@ -80,3 +80,8 @@ The picture below shows it at 2023/01.
 If you updated its configuration, then also update repository's one.
 1. update your karabiner configuration by Karabiner-GUI.
 1. copy json file to this repository.
+
+## [Rectangle](https://rectangleapp.com/)
+Please import the json file in this repository.
+The picture below show import and export settings.
+![rectangle-gui](images/image-rectangle.png)
