@@ -1,4 +1,10 @@
 # Portable Configuration Files
+## Prerequisite
+```shell
+brew install --cask wezterm
+brew install ghq peco coreutils gnu-sed gawk tmux
+```
+
 ## peco
 ```shell
 mkdir $HOME/.config/peco/
