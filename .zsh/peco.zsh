@@ -173,15 +173,9 @@ zle -N peco-cmd
 bindkey '^J' peco-cmd
 
 function ops() {
-    local file
     local cmd
 
-    # Step 1: Select a file in ~/ops
-    file=$(ls ~/ops | peco)
-    [[ -z "$file" ]] && return 1  # Exit if no file is selected
-
-    # Step 2: Select a command from the selected file
-    cmd=$(cat ~/ops/"$file" | peco)
+    cmd=$(ls ~/ops | peco | xargs -I {} cat ~/ops/{} | peco)
     [[ -z "$cmd" ]] && return 1  # Exit if no command is selected
 
     # Insert the selected command into the current shell buffer
