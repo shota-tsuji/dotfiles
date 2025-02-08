@@ -21,3 +21,6 @@ export FORGIT_FZF_DEFAULT_OPTS='
 --preview-window=down
 --bind="ctrl-f:preview-page-down,ctrl-b:preview-page-up"
 '
+
+# For Poetry, etc.
+export PATH="$HOME/.local/bin:$PATH"
