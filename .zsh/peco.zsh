@@ -183,4 +183,4 @@ function ops() {
     CURSOR=${#BUFFER}
 }
 zle -N ops
-bindkey '^L' ops
+bindkey '^N' ops
