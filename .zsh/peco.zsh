@@ -1,6 +1,6 @@
 function work { cd ~/Work; }
 function repo {
-	local path=$(ghq list --full-path | peco --query "$LBUFFER")
+	local path=$(ghq list --full-path | fzf --height=40% --reverse)
 	if [ -n "$path" ]; then
 		if [ -t 1 ]; then
 			cd ${path}
@@ -39,7 +39,14 @@ function peco-history-selection() {
 }
 
 zle -N peco-history-selection
-bindkey '^r' peco-history-selection
+#bindkey '^r' peco-history-selection
+function fzf-history() {
+    BUFFER=$(history 1 | sed 's/^[[:space:]]*[0-9]\+[[:space:]]*//' | fzf --height=40% --reverse)
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+zle -N fzf-history
+bindkey '^r' fzf-history
 
 # enable `cdr`
 if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]]; then
@@ -56,7 +63,7 @@ function peco-cdr () {
     # ^ is string head
     # [0-9]\+ is multiple digits
     # \s\+ is multiple spaces
-	local selected_dir="$(cdr -l | sed 's/^[0-9]\+\s\+//' | peco --prompt="cdr >" --query "$LBUFFER")"
+	local selected_dir="$(cdr -l | sed 's/^[0-9]\+\s\+//' | fzf --height=40% --reverse)"
 	if [ -n "$selected_dir" ]; then
 		BUFFER="cd ${selected_dir}"
 		zle accept-line
@@ -85,7 +92,17 @@ function peco-vim-open-recent-file () {
 	CURSOR=${#BUFFER}
 }
 zle -N peco-vim-open-recent-file
-bindkey '^V' peco-vim-open-recent-file
+#bindkey '^V' peco-vim-open-recent-file
+
+function fzf-vim-open-recent-file() {
+	local selected_file="$(egrep '^>' ~/.viminfo | cut -c3- | perl -E 'say for map { chomp; $_ =~ s/^~/$ENV{HOME}/e; -f $_ ? $_ : () } <STDIN>' | fzf --height=40%)"
+	if [ -n "$selected_file" ]; then
+		BUFFER="vim ${selected_file}" 
+	fi
+	CURSOR=${#BUFFER}
+}
+zle -N fzf-vim-open-recent-file
+bindkey '^V' fzf-vim-open-recent-file
 
 function peco-select-file-from-current-directory () {
     local current_buffer=$BUFFER
@@ -175,7 +192,7 @@ bindkey '^J' peco-cmd
 function ops() {
     local cmd
 
-    cmd=$(ls ~/ops | peco | xargs -I {} cat ~/ops/{} | peco)
+    cmd=$(ls ~/ops | fzf --height=40% --reverse | xargs -I {} cat ~/ops/{} | fzf --height=40% --reverse)
     [[ -z "$cmd" ]] && return 1  # Exit if no command is selected
 
     # Insert the selected command into the current shell buffer
