@@ -13,6 +13,7 @@ case $(isOS) in
     darwin*)
         source $ZSH_DIR/mac-alias.zsh
         source $ZSH_DIR/mac-env.zsh
+        source $ZSH_DIR/mac-fzf.zsh
         ;;
     *)
         ;;
