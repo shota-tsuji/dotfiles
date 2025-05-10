@@ -41,7 +41,7 @@ function peco-history-selection() {
 zle -N peco-history-selection
 #bindkey '^r' peco-history-selection
 function fzf-history() {
-    BUFFER=$(history 1 | sed 's/^[[:space:]]*[0-9]\+[[:space:]]*//' | fzf --height=40% --reverse)
+    BUFFER=$(fc -rl 1 | sed 's/^[[:space:]]*[0-9]\+[[:space:]]*//' | fzf --height=40% --reverse --no-sort)
     CURSOR=$#BUFFER
     zle reset-prompt
 }
