@@ -1,5 +1,9 @@
 # Portable Configuration Files
-## Prerequisite
+## Prerequisite (MacOS)
+[Homebrew Bundle, brew bundle and Brewfile — Homebrew Documentation](https://docs.brew.sh/Brew-Bundle-and-Brewfile)
+```shell
+brew bundle dump --global --force
+```
 ```shell
 brew install --cask wezterm
 brew install ghq peco coreutils gnu-sed gawk tmux
