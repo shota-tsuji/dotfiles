@@ -115,27 +115,6 @@ function peco-select-file-from-current-directory () {
 zle -N peco-select-file-from-current-directory
 #bindkey '^J' peco-select-file-from-current-directory
 
-# cd .. & cd する bindkey
-# BUFFER と git status を見て出し分けする関数
-# ディレクトリの存在を見て出し分けする bindkey
-
-function peco-git-checkout {
-	#local selected_branch="$(git branch | peco | sed 's/^[ \t]*//')"
-	local selected_branch="$(git branch | sed 's/^[ \t]*//' | grep -v '^[*]' | peco --prompt="branch >")"
-	#echo ${selected_branch}
-	#print -z "git checkout ${selected_branch}"
-	git checkout ${selected_branch} > /dev/null 2>&1
-	echo "Switched to branch '${selected_branch}'"
-	#print -z "git checkout $(sed 's/^[ \t]*//' selected_branch)"
-	#git branch | peco | xargs git checkout
-	#echo ${selected_branch}
-	#git checkout ${selected_branch}
-	#
-	#zle accept-line
-	#BUFFER="git checkout ${selected_branch}"
-}
-alias chch=peco-git-checkout
-
 #function peco-forward-change-directory {
 #    #local selected_dir="$(find ./ -maxdepth 5 -type d | grep -v git | grep -v "許可がありません" | peco)"
 #    #find ./ -maxdepth 5 -type d | grep -v git | grep -v "許可がありません" | peco
