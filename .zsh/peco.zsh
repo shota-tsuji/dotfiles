@@ -40,13 +40,13 @@ function peco-history-selection() {
 
 zle -N peco-history-selection
 #bindkey '^r' peco-history-selection
-function fzf-history() {
-    BUFFER=$(fc -rl 1 | sed 's/^[[:space:]]*[0-9]\+[[:space:]]*//' | fzf --height=40% --reverse --no-sort)
+function fzf_history() {
+    BUFFER=$(fc -nrl 1 | fzf --height=40% --reverse --no-sort)
     CURSOR=$#BUFFER
     zle reset-prompt
 }
-zle -N fzf-history
-bindkey '^r' fzf-history
+zle -N fzf_history
+bindkey '^r' fzf_history
 
 # enable `cdr`
 if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]]; then
