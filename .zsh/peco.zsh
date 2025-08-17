@@ -40,13 +40,13 @@ function peco-history-selection() {
 
 zle -N peco-history-selection
 #bindkey '^r' peco-history-selection
-function fzf-history() {
-    BUFFER=$(fc -rl 1 | sed 's/^[[:space:]]*[0-9]\+[[:space:]]*//' | fzf --height=40% --reverse --no-sort)
+function fzf_history() {
+    BUFFER=$(fc -nrl 1 | fzf --height=40% --reverse --no-sort)
     CURSOR=$#BUFFER
     zle reset-prompt
 }
-zle -N fzf-history
-bindkey '^r' fzf-history
+zle -N fzf_history
+bindkey '^r' fzf_history
 
 # enable `cdr`
 if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]]; then
@@ -114,27 +114,6 @@ function peco-select-file-from-current-directory () {
 }
 zle -N peco-select-file-from-current-directory
 #bindkey '^J' peco-select-file-from-current-directory
-
-# cd .. & cd する bindkey
-# BUFFER と git status を見て出し分けする関数
-# ディレクトリの存在を見て出し分けする bindkey
-
-function peco-git-checkout {
-	#local selected_branch="$(git branch | peco | sed 's/^[ \t]*//')"
-	local selected_branch="$(git branch | sed 's/^[ \t]*//' | grep -v '^[*]' | peco --prompt="branch >")"
-	#echo ${selected_branch}
-	#print -z "git checkout ${selected_branch}"
-	git checkout ${selected_branch} > /dev/null 2>&1
-	echo "Switched to branch '${selected_branch}'"
-	#print -z "git checkout $(sed 's/^[ \t]*//' selected_branch)"
-	#git branch | peco | xargs git checkout
-	#echo ${selected_branch}
-	#git checkout ${selected_branch}
-	#
-	#zle accept-line
-	#BUFFER="git checkout ${selected_branch}"
-}
-alias chch=peco-git-checkout
 
 #function peco-forward-change-directory {
 #    #local selected_dir="$(find ./ -maxdepth 5 -type d | grep -v git | grep -v "許可がありません" | peco)"
