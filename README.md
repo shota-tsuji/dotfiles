@@ -80,14 +80,17 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo 
 ```
 
 ## karabiner on Mac
-Because symbolic link does not affect correctlly with karabiner, just copy to load and update configuration.
+Because symbolic link does not affect correctly with karabiner, just copy to load and update configuration.
 copy json file to your configuration directory.
+When you overwrite a json, external keyboard settings are deleted.
+So, you need to re-configure external keyboard.
 ```shell
 cp karabiner.json ~/.config/karabiner/
 ```
 Also karabiner.json is needed to affect on GUI. And the order of rules is important.
 The picture below shows it at 2023/01.
 ![karabiner-gui](images/image-karabiner-ui-2023-01-30.png)
+![karabiner_keyboard](images/karabiner_ui_keyboard.png)
 
 If you updated its configuration, then also update repository's one.
 1. update your karabiner configuration by Karabiner-GUI.
