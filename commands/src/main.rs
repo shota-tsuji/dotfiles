@@ -5,7 +5,7 @@ use std::process::Command;
 extern crate skim;
 use skim::prelude::*;
 
-pub fn main() -> Result<()> {
+pub fn open_repository() -> Result<()> {
     let jetbrains_scripts = format!(
         "{}/Library/Application Support/JetBrains/Toolbox/scripts",
         std::env::var("HOME").context("Failed to get HOME env var")?
@@ -76,5 +76,69 @@ fn list_files_in_dir(dir_path: &str) -> Vec<String> {
             .filter_map(|entry| entry.ok().map(|e| e.file_name().into_string().unwrap()))
             .collect(),
         Err(_) => Vec::new(),
+    }
+}
+
+//fn main() {
+//    let ops_dir = format!("{}/ops", std::env::var("HOME").unwrap());
+//    let mut lines = Vec::new();
+//
+//    // Collect all lines from all files in ~/ops/
+//    if let Ok(entries) = fs::read_dir(&ops_dir) {
+//        for entry in entries.flatten() {
+//            let path: PathBuf = entry.path();
+//            if path.is_file() {
+//                if let Ok(content) = fs::read_to_string(&path) {
+//                    for line in content.lines() {
+//                        lines.push(line.to_string());
+//                    }
+//                }
+//            }
+//        }
+//    }
+//
+//    let item_reader = SkimItemReader::default();
+//    let skim_items = item_reader.of_bufread(Cursor::new(lines.join("\n")));
+//
+//    let options = SkimOptionsBuilder::default()
+//        .height(Some("40%"))
+//        .reverse(true)
+//        .build()
+//        .unwrap();
+//
+//    if let Some(out) = Skim::run_with(&options, Some(skim_items)) {
+//        if let Some(selected) = out.selected_items.first() {
+//            println!("{}", selected.text());
+//        }
+//    }
+//}
+
+use clap::{Parser, Subcommand};
+
+#[derive(Parser)]
+#[command(name = "commands")]
+struct Cli {
+    #[command(subcommand)]
+    command: Commands,
+}
+
+#[derive(Subcommand)]
+enum Commands {
+    OpenRepository,
+    Ops,
+}
+
+fn main() {
+    let cli = Cli::parse();
+
+    match cli.command {
+        Commands::OpenRepository => {
+            if let Err(e) = open_repository() {
+                eprintln!("Error: {}", e);
+            }
+        }
+        Commands::Ops => {
+            // Call your ops extraction logic here
+        }
     }
 }
