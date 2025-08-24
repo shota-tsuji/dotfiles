@@ -1,39 +1,29 @@
+use anyhow::{Context, Result};
 use std::fs;
 use std::io::Cursor;
-
+use std::process::Command;
 extern crate skim;
 use skim::prelude::*;
 
-
-pub fn main() {
-        let jetbrains_scripts = format!(
-            "{}/Library/Application Support/JetBrains/Toolbox/scripts",
-            std::env::var("HOME").unwrap()
-        );
-    let editors = list_files_in_dir(&jetbrains_scripts);
+pub fn main() -> Result<()> {
+    let jetbrains_scripts = format!(
+        "{}/Library/Application Support/JetBrains/Toolbox/scripts",
+        std::env::var("HOME").context("Failed to get HOME env var")?
+    );
+    let editor_choices = list_files_in_dir(&jetbrains_scripts);
 
     let options = build_options();
 
-    let selected_editor = select_item(&options, editors);
-    let Ok(selected_item) = selected_editor else {
-        println!("No editor selected.");
-        return;
-    };
+    let editor = select_item(&options, editor_choices).context("No editor selected")?;
 
-    let (ghq_root, repos) = get_ghq_repos();
-    let selected_repository = select_item(&options, repos);
-    let Ok(selected_repository) = selected_repository else {
-        println!("No repository selected.");
-        return;
-    };
+    let (ghq_root, repository_choices) = get_ghq_repos();
+    let repository = select_item(&options, repository_choices).context("No repository selected")?;
 
-    let repository_path = format!("{}/{}", ghq_root, selected_repository.text());
+    let repository_path = format!("{}/{}", ghq_root, repository);
+    println!("{} {}", editor, repository_path);
 
-    println!("{} {}", selected_item.text(), repository_path);
+    Ok(())
 }
-
-
-use std::process::Command;
 
 fn get_ghq_repos() -> (String, Vec<String>) {
     // Get ghq root
@@ -45,7 +35,7 @@ fn get_ghq_repos() -> (String, Vec<String>) {
 
     // Get full paths
     let repos = Command::new("ghq")
-        .args(&["list", "--full-path"])
+        .args(["list", "--full-path"])
         .output()
         .expect("Failed to run ghq list --full-path");
     let repos = String::from_utf8_lossy(&repos.stdout);
@@ -69,17 +59,14 @@ fn build_options() -> SkimOptions {
         .unwrap()
 }
 
-fn select_item(
-    options: &SkimOptions,
-    items: Vec<String>,
-) -> Result<String, Box<dyn std::error::Error>> {
+fn select_item(options: &SkimOptions, items: Vec<String>) -> Result<String> {
     let item_reader = SkimItemReader::default();
     let items_str = items.join("\n");
     let skim_items = item_reader.of_bufread(Cursor::new(items_str));
-    let selected = Skim::run_with(&options, Some(skim_items))
+    let selected = Skim::run_with(options, Some(skim_items))
         .map(|out| out.selected_items)
-        .and_then(|out| out.get(0).cloned())
-        .ok_or("No item selected")?;
+        .and_then(|out| out.first().cloned())
+        .ok_or_else(|| anyhow::anyhow!("No item selected"))?;
     Ok(selected.text().to_string())
 }
 
