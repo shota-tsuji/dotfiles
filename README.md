@@ -28,6 +28,14 @@ curl -sS https://starship.rs/install.sh | sh
 ln -s $(readlink -f starship.toml) $HOME/.config/
 ```
 
+## commands
+`commands` binary is used within zsh.
+So, you need to install its binary.
+```shell
+cd commands
+cargo install --path .
+```
+
 ## zsh
 ```shell
 ln -s $(readlink -f .zshrc) $HOME/.zshrc
