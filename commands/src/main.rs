@@ -1,11 +1,12 @@
 use anyhow::{Context, Result};
 use std::fs;
 use std::io::Cursor;
+use std::path::PathBuf;
 use std::process::Command;
 extern crate skim;
 use skim::prelude::*;
 
-pub fn main() -> Result<()> {
+pub fn open_repository() -> Result<()> {
     let jetbrains_scripts = format!(
         "{}/Library/Application Support/JetBrains/Toolbox/scripts",
         std::env::var("HOME").context("Failed to get HOME env var")?
@@ -76,5 +77,68 @@ fn list_files_in_dir(dir_path: &str) -> Vec<String> {
             .filter_map(|entry| entry.ok().map(|e| e.file_name().into_string().unwrap()))
             .collect(),
         Err(_) => Vec::new(),
+    }
+}
+
+fn extract_operation() -> Result<()> {
+    let ops_dir = format!("{}/ops", std::env::var("HOME")?);
+    let mut operations = Vec::new();
+
+    // Collect all lines from all files in ~/ops/
+    let Ok(entries) = fs::read_dir(&ops_dir) else {
+        return Err(anyhow::anyhow!("Ops directory not found: {}", ops_dir));
+    };
+
+    let files: Vec<PathBuf> = entries
+        .flatten()
+        .map(|entry| entry.path())
+        .filter(|entry| entry.is_file())
+        .collect();
+    let contents_list: Vec<String> = files
+        .iter()
+        .filter_map(|path| fs::read_to_string(path).ok())
+        .collect();
+    for content in contents_list {
+        for line in content.lines() {
+            operations.push(line.to_string());
+        }
+    }
+
+    let options = build_options();
+
+    let operation = select_item(&options, operations).context("No operation selected")?;
+    print!("{}", operation);
+    Ok(())
+}
+
+use clap::{Parser, Subcommand};
+
+#[derive(Parser)]
+#[command(name = "commands")]
+struct Cli {
+    #[command(subcommand)]
+    command: Commands,
+}
+
+#[derive(Subcommand)]
+enum Commands {
+    OpenRepository,
+    Ops,
+}
+
+fn main() {
+    let cli = Cli::parse();
+
+    match cli.command {
+        Commands::OpenRepository => {
+            if let Err(e) = open_repository() {
+                eprintln!("Error: {}", e);
+            }
+        }
+        Commands::Ops => {
+            if let Err(e) = extract_operation() {
+                eprintln!("Error: {}", e);
+            }
+        }
     }
 }

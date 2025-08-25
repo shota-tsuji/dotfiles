@@ -169,14 +169,6 @@ zle -N peco-cmd
 bindkey '^J' peco-cmd
 
 function ops() {
-    local cmd
-
-    cmd=$(ls ~/ops | fzf --height=40% --reverse | xargs -I {} cat ~/ops/{} | fzf --height=40% --reverse)
-    [[ -z "$cmd" ]] && return 1  # Exit if no command is selected
-
-    # Insert the selected command into the current shell buffer
-    BUFFER="${cmd}"
-    CURSOR=${#BUFFER}
+  echo -n $(commands ops) | pbcopy
+  echo "command copied to clipboard"
 }
-zle -N ops
-bindkey '^N' ops
