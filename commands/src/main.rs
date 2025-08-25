@@ -124,6 +124,7 @@ struct Cli {
 enum Commands {
     OpenRepository,
     Ops,
+    MoveToRepository,
 }
 
 fn main() {
@@ -139,6 +140,11 @@ fn main() {
             if let Err(e) = extract_operation() {
                 eprintln!("Error: {}", e);
             }
+        }
+        Commands::MoveToRepository => {
+            //if let Err(e) = open_repository() {
+            //    eprintln!("Error: {}", e);
+            //}
         }
     }
 }
