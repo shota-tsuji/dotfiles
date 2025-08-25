@@ -1,14 +1,4 @@
 function work { cd ~/Work; }
-function repo {
-	local path=$(ghq list --full-path | fzf --height=40% --reverse)
-	if [ -n "$path" ]; then
-		if [ -t 1 ]; then
-			cd ${path}
-			echo 'jump to' ${path}
-		fi
-	fi
-}
-
 # peco find directory
 #function peco-find() {
 #	local current_buffer=$BUFFER
@@ -172,3 +162,11 @@ function ops() {
   echo -n $(commands ops) | pbcopy
   echo "command copied to clipboard"
 }
+
+function repo {
+  local repository
+  repository=$(commands move-to-repository)
+  cd ${repository}
+  echo 'jump to' ${repository}
+}
+
