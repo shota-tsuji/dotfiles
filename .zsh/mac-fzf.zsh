@@ -1,6 +1,6 @@
 function e () {
   local command
-  command="$(commands)"
+  command="$(commands open-repository)"
   echo "${command}"
   eval "${command}"
 }
