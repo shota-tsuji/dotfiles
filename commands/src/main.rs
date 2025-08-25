@@ -1,6 +1,7 @@
 use anyhow::{Context, Result};
 use std::fs;
 use std::io::Cursor;
+use std::path::PathBuf;
 use std::process::Command;
 extern crate skim;
 use skim::prelude::*;
@@ -79,39 +80,36 @@ fn list_files_in_dir(dir_path: &str) -> Vec<String> {
     }
 }
 
-//fn main() {
-//    let ops_dir = format!("{}/ops", std::env::var("HOME").unwrap());
-//    let mut lines = Vec::new();
-//
-//    // Collect all lines from all files in ~/ops/
-//    if let Ok(entries) = fs::read_dir(&ops_dir) {
-//        for entry in entries.flatten() {
-//            let path: PathBuf = entry.path();
-//            if path.is_file() {
-//                if let Ok(content) = fs::read_to_string(&path) {
-//                    for line in content.lines() {
-//                        lines.push(line.to_string());
-//                    }
-//                }
-//            }
-//        }
-//    }
-//
-//    let item_reader = SkimItemReader::default();
-//    let skim_items = item_reader.of_bufread(Cursor::new(lines.join("\n")));
-//
-//    let options = SkimOptionsBuilder::default()
-//        .height(Some("40%"))
-//        .reverse(true)
-//        .build()
-//        .unwrap();
-//
-//    if let Some(out) = Skim::run_with(&options, Some(skim_items)) {
-//        if let Some(selected) = out.selected_items.first() {
-//            println!("{}", selected.text());
-//        }
-//    }
-//}
+fn extract_operation() -> Result<()> {
+    let ops_dir = format!("{}/ops", std::env::var("HOME")?);
+    let mut operations = Vec::new();
+
+    // Collect all lines from all files in ~/ops/
+    let Ok(entries) = fs::read_dir(&ops_dir) else {
+        return Err(anyhow::anyhow!("Ops directory not found: {}", ops_dir));
+    };
+
+    let files: Vec<PathBuf> = entries
+        .flatten()
+        .map(|entry| entry.path())
+        .filter(|entry| entry.is_file())
+        .collect();
+    let contents_list: Vec<String> = files
+        .iter()
+        .filter_map(|path| fs::read_to_string(path).ok())
+        .collect();
+    for content in contents_list {
+        for line in content.lines() {
+            operations.push(line.to_string());
+        }
+    }
+
+    let options = build_options();
+
+    let operation = select_item(&options, operations).context("No operation selected")?;
+    print!("{}", operation);
+    Ok(())
+}
 
 use clap::{Parser, Subcommand};
 
@@ -138,7 +136,9 @@ fn main() {
             }
         }
         Commands::Ops => {
-            // Call your ops extraction logic here
+            if let Err(e) = extract_operation() {
+                eprintln!("Error: {}", e);
+            }
         }
     }
 }
