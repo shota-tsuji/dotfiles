@@ -26,6 +26,13 @@ pub fn open_repository() -> Result<()> {
     Ok(())
 }
 
+pub fn move_to_repository() -> Result<String> {
+    let (ghq_root, repository_choices) = get_ghq_repos();
+    let options = build_options();
+    let repository = select_item(&options, repository_choices).context("No repository selected")?;
+    Ok(format!("{}/{}", ghq_root, repository))
+}
+
 fn get_ghq_repos() -> (String, Vec<String>) {
     // Get ghq root
     let ghq_root = Command::new("ghq")
@@ -52,10 +59,11 @@ fn get_ghq_repos() -> (String, Vec<String>) {
 }
 
 fn build_options() -> SkimOptions {
+    // To avoid overwriting the terminal content after selection, height and min_height are not set.
     SkimOptionsBuilder::default()
         .exact(true)
         .no_sort(true)
-        .min_height(String::from("3%"))
+        .reverse(true)
         .build()
         .unwrap()
 }
@@ -124,6 +132,7 @@ struct Cli {
 enum Commands {
     OpenRepository,
     Ops,
+    MoveToRepository,
 }
 
 fn main() {
@@ -138,6 +147,12 @@ fn main() {
         Commands::Ops => {
             if let Err(e) = extract_operation() {
                 eprintln!("Error: {}", e);
+            }
+        }
+        Commands::MoveToRepository => {
+            match move_to_repository() {
+                Ok(repository) => print!("{}", repository),
+                Err(e) => eprintln!("Error: {}", e)
             }
         }
     }
