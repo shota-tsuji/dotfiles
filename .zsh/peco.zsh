@@ -49,15 +49,10 @@ if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]
 fi
 
 function peco-cdr () {
-    # Using sed, digits and spaces are shulinked.
-    # ^ is string head
-    # [0-9]\+ is multiple digits
-    # \s\+ is multiple spaces
-	local selected_dir="$(cdr -l | sed 's/^[0-9]\+\s\+//' | fzf --height=40% --reverse)"
-	if [ -n "$selected_dir" ]; then
-		BUFFER="cd ${selected_dir}"
-		zle accept-line
-	fi
+  local directory
+  directory=$(commands cdr)
+  BUFFER="cd ${directory}"
+  zle accept-line
 }
 zle -N peco-cdr
 bindkey '^O' peco-cdr

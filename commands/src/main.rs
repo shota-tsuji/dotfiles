@@ -1,6 +1,7 @@
 use anyhow::{Context, Result};
 use std::fs;
-use std::io::Cursor;
+use std::fs::File;
+use std::io::{BufRead, BufReader, Cursor};
 use std::path::PathBuf;
 use std::process::Command;
 extern crate skim;
@@ -119,7 +120,34 @@ fn extract_operation() -> Result<()> {
     Ok(())
 }
 
+fn select_cdr_directory() -> Result<String> {
+    let cache_path = format!("{}/.cache/chpwd-recent-dirs", std::env::var("HOME")?);
+    let file = File::open(&cache_path).context("Failed to open chpwd-recent-dirs")?;
+    let reader = BufReader::new(file);
+
+    // Regex to match lines like $'/path/to/directory'
+    // Capture the group (occurrence of .*)
+    let re = Regex::new(r"^\$'(.*)'$")?;
+
+    fn extract_dir(line: &str, re: &Regex) -> Option<String> {
+        // get the first capture group
+        re.captures(line)
+            .and_then(|caps| caps.get(1).map(|m| m.as_str().to_string()))
+    }
+
+    let dirs: Vec<String> = reader
+        .lines()
+        .map_while(Result::ok)
+        .filter_map(|line| extract_dir(&line, &re))
+        .collect();
+    let options = build_options();
+    let selected = select_item(&options, dirs).context("No directory selected")?;
+
+    Ok(selected.text().to_string())
+}
+
 use clap::{Parser, Subcommand};
+use regex::Regex;
 
 #[derive(Parser)]
 #[command(name = "commands")]
@@ -133,6 +161,7 @@ enum Commands {
     OpenRepository,
     Ops,
     MoveToRepository,
+    Cdr,
 }
 
 fn main() {
@@ -149,11 +178,13 @@ fn main() {
                 eprintln!("Error: {}", e);
             }
         }
-        Commands::MoveToRepository => {
-            match move_to_repository() {
-                Ok(repository) => print!("{}", repository),
-                Err(e) => eprintln!("Error: {}", e)
-            }
-        }
+        Commands::MoveToRepository => match move_to_repository() {
+            Ok(repository) => print!("{}", repository),
+            Err(e) => eprintln!("Error: {}", e),
+        },
+        Commands::Cdr => match select_cdr_directory() {
+            Ok(directory) => print!("{}", directory),
+            Err(e) => eprintln!("Error: {}", e),
+        },
     }
 }
