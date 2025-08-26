@@ -64,7 +64,7 @@ fn build_options() -> SkimOptions {
     SkimOptionsBuilder::default()
         .exact(true)
         .no_sort(true)
-        .reverse(true)
+        .prompt(String::from("query> "))
         .build()
         .unwrap()
 }
