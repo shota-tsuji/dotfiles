@@ -1,5 +1,5 @@
 use anyhow::{Context, Result};
-use std::fs;
+use std::{env, fs};
 use std::fs::File;
 use std::io::{BufRead, BufReader, Cursor};
 use std::path::PathBuf;
@@ -64,7 +64,7 @@ fn build_options() -> SkimOptions {
     SkimOptionsBuilder::default()
         .exact(true)
         .no_sort(true)
-        .reverse(true)
+        .prompt(String::from("query> "))
         .build()
         .unwrap()
 }
@@ -135,10 +135,13 @@ fn select_cdr_directory() -> Result<String> {
             .and_then(|caps| caps.get(1).map(|m| m.as_str().to_string()))
     }
 
+    let current_dir = env::current_dir()?.to_str().unwrap().to_string();
+
     let dirs: Vec<String> = reader
         .lines()
         .map_while(Result::ok)
         .filter_map(|line| extract_dir(&line, &re))
+        .filter(|dir| dir != &current_dir)
         .collect();
     let options = build_options();
     let selected = select_item(&options, dirs).context("No directory selected")?;
