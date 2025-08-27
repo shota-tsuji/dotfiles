@@ -48,14 +48,14 @@ if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]
 	zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/chpwd-recent-dirs"
 fi
 
-function peco-cdr () {
+function cd_from_history () {
   local directory
   directory=$(commands cdr)
   BUFFER="cd ${directory}"
   zle accept-line
 }
-zle -N peco-cdr
-bindkey '^O' peco-cdr
+zle -N cd_from_history
+bindkey '^O' cd_from_history
 
 function pdf () {
 	local pdf_dir="$HOME/Documents/Books/"
