@@ -201,6 +201,51 @@
                                 "to": [{ "mouse_key": { "horizontal_wheel": -32 } }]
                             }
                         ]
+                    },
+                    {
+                        "description": "Move mouse cursor by z + arrows",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "simultaneous": [
+                                        { "key_code": "z" },
+                                        { "key_code": "up_arrow" }
+                                    ]
+                                },
+                                "to": [{ "mouse_key": { "y": -6144 } }]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "simultaneous": [
+                                        { "key_code": "z" },
+                                        { "key_code": "down_arrow" }
+                                    ]
+                                },
+                                "to": [{ "mouse_key": { "y": 6144 } }]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "simultaneous": [
+                                        { "key_code": "z" },
+                                        { "key_code": "left_arrow" }
+                                    ]
+                                },
+                                "to": [{ "mouse_key": { "x": -6144 } }]
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "simultaneous": [
+                                        { "key_code": "z" },
+                                        { "key_code": "right_arrow" }
+                                    ]
+                                },
+                                "to": [{ "mouse_key": { "x": 6144 } }]
+                            }
+                        ]
                     }
                 ]
             },
