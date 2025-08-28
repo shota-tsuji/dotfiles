@@ -1,7 +1,7 @@
 use anyhow::{Context, Result};
 use std::{env, fs};
 use std::fs::File;
-use std::io::{BufRead, BufReader, Cursor};
+use std::io::{BufRead, BufReader, Cursor, Write};
 use std::path::PathBuf;
 use std::process::Command;
 extern crate skim;
@@ -73,9 +73,15 @@ fn select_item(options: &SkimOptions, items: Vec<String>) -> Result<String> {
     let item_reader = SkimItemReader::default();
     let items_str = items.join("\n");
     let skim_items = item_reader.of_bufread(Cursor::new(items_str));
-    let selected = Skim::run_with(options, Some(skim_items))
-        .map(|out| out.selected_items)
-        .and_then(|out| out.first().cloned())
+    let Some(result) = Skim::run_with(options, Some(skim_items)) else {
+        return Err(anyhow::anyhow!("No item selected"));
+    };
+    if result.is_abort {
+        return Err(anyhow::anyhow!("Selection aborted"));
+    }
+    let selected = result.selected_items
+        .first()
+        .cloned()
         .ok_or_else(|| anyhow::anyhow!("No item selected"))?;
     Ok(selected.text().to_string())
 }
@@ -120,7 +126,7 @@ fn extract_operation() -> Result<()> {
     Ok(())
 }
 
-fn select_cdr_directory() -> Result<String> {
+fn select_cdr_directory() -> Result<i32> {
     let cache_path = format!("{}/.cache/chpwd-recent-dirs", std::env::var("HOME")?);
     let file = File::open(&cache_path).context("Failed to open chpwd-recent-dirs")?;
     let reader = BufReader::new(file);
@@ -144,9 +150,11 @@ fn select_cdr_directory() -> Result<String> {
         .filter(|dir| dir != &current_dir)
         .collect();
     let options = build_options();
-    let selected = select_item(&options, dirs).context("No directory selected")?;
+    let directory = select_item(&options, dirs).context("No directory selected")?;
 
-    Ok(selected.text().to_string())
+    print!("{}", directory.text().to_string());
+    std::io::stdout().flush().context("Failed to flush stdout")?;
+    Ok(0)
 }
 
 use clap::{Parser, Subcommand};
@@ -186,8 +194,8 @@ fn main() {
             Err(e) => eprintln!("Error: {}", e),
         },
         Commands::Cdr => match select_cdr_directory() {
-            Ok(directory) => print!("{}", directory),
-            Err(e) => eprintln!("Error: {}", e),
-        },
+            Ok(exit_code) => std::process::exit(exit_code),
+            Err(_) => std::process::exit(1),
+        }
     }
 }
