@@ -155,7 +155,6 @@ bindkey '^J' peco-cmd
 
 function ops() {
   echo -n $(commands ops) | pbcopy
-  echo "command copied to clipboard"
 }
 
 function repo {
