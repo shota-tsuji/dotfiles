@@ -5,7 +5,7 @@
 	default = simple
 	autoSetupRemote = true
 [core]
-	editor = vim -c \"set fenc=utf-8\"
+	editor = nvim -c \"set fenc=utf-8\"
 	excludesfile = /home/shota/.gitignore_global
 [alias]
 	st = status
