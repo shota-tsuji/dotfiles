@@ -32,7 +32,7 @@ set undolevels=300
 set history=10000	" コマンド・検索パターンの履歴
 set iminsert=0		" IME設定
 set imsearch=0
-set imdisable
+"set imdisable
 
 set laststatus=2	" ステータスライン
 set cmdheight=1		" メッセージ表示欄
