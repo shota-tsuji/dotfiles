@@ -10,7 +10,8 @@ alias j='jobs -l'
 # Set vim as default
 alias vi=vim
 alias svi='sudo vim'
-alias edit='vim'
+alias edit='nvim'
+alias v='nvim'
 
 alias rm='rm -i'
 alias cp='cp -i'

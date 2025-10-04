@@ -11,13 +11,14 @@
 " コメントblue，選択行(light) gray
 "highlight Normal ctermfg=blue ctermbg=gray
 
-set t_Co=256	" カラー設定
+"set t_Co=256	" カラー設定
+set termguicolors 
 "colorscheme hybrid
 "colorscheme molokai
 "colorscheme nord
 
 "let g:htbrid_reduced_contrast = 1
-set background=dark
+"set background=dark
 set cindent
 "set mouse=a
 "set ttymouse=xterm2

@@ -31,7 +31,7 @@ function peco-history-selection() {
 zle -N peco-history-selection
 #bindkey '^r' peco-history-selection
 function fzf_history() {
-    BUFFER=$(fc -nrl 1 | fzf --height=40% --reverse --no-sort)
+    BUFFER=$(fc -nrl 1 | fzf --height=40% --reverse --no-sort --exact)
     CURSOR=$#BUFFER
     zle reset-prompt
 }
@@ -64,7 +64,7 @@ function pdf () {
 	local selected_pdf="$(cd $pdf_dir && ls ${pdf_dir} | xargs readlink -f | peco --prompt="pdf >")"
 	if [ -n "$selected_pdf" ]; then
 		if [ -t 1 ]; then
-			evince ${selected_pdf}&
+			open ${selected_pdf}&
 		fi
 	fi
 }
@@ -82,7 +82,7 @@ zle -N peco-vim-open-recent-file
 function fzf-vim-open-recent-file() {
 	local selected_file="$(egrep '^>' ~/.viminfo | cut -c3- | perl -E 'say for map { chomp; $_ =~ s/^~/$ENV{HOME}/e; -f $_ ? $_ : () } <STDIN>' | fzf --height=40%)"
 	if [ -n "$selected_file" ]; then
-		BUFFER="vim ${selected_file}" 
+		BUFFER="nvim ${selected_file}" 
 	fi
 	CURSOR=${#BUFFER}
 }
@@ -158,9 +158,10 @@ function ops() {
 }
 
 function repo {
-  local repository
-  repository=$(commands move-to-repository)
-  cd ${repository}
-  echo 'jump to' ${repository}
+  #local repository
+  #repository=$(commands move-to-repository)
+  #cd ${repository}
+  #echo 'jump to' ${repository}
+  cd $(commands move-to-repository)
 }
 
