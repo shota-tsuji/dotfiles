@@ -24,6 +24,7 @@ source $ZSH_DIR/env.zsh
 source $ZSH_DIR/options.zsh
 source $ZSH_DIR/plugin.zsh
 source $ZSH_DIR/style.zsh
+source $ZSH_DIR/kubernetes.zsh
 
 # To overwrite key-bind, load bindkey options at last.
 source $ZSH_DIR/bindkey.zsh
