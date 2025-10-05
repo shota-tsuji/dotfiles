@@ -27,6 +27,11 @@ Plug 'liuchengxu/vista.vim'
 Plug 'tpope/vim-surround'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'CopilotC-Nvim/CopilotChat.nvim'
+Plug 'chrisgrieser/nvim-origami'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'folke/persistence.nvim'
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 

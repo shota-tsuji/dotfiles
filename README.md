@@ -63,6 +63,14 @@ ln -s $(readlink -f .tmux.conf) $HOME/.tmux.conf
 zsh < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
 ```
 
+## nvim
+```shell
+ln -s $(readlink -f init.vim) $HOME/.config/nvim/init.vim
+ln -s $(readlink -f vim-config) $HOME/.config/nvim/vim-config
+mkdir -p ~/.config/nvim/autoload
+curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
+
 ## vim
 ```shell
 ln -s $(readlink -f .vimrc) $HOME/.vimrc
