@@ -122,6 +122,21 @@
                                 ]
                                 },
                                 {
+                                    "type": "basic",
+                                    "from": {
+                                        "key_code": "y",
+                                        "modifiers": { "mandatory": ["left_command"] }
+                                    },
+                                    "to": [
+                                        {
+                                        "set_variable": {
+                                            "name": "vim_mode",
+                                            "value": 2
+                                        }
+                                        }
+                                    ]
+                                },
+                                {
                                 "type": "basic",
                                 "from": {
                                     "key_code": "quote",
@@ -253,61 +268,49 @@
                         "manipulators": [
                             {
                                 "type": "basic",
-                                "from": {
-                                    "key_code": "k",
-                                    "modifiers": { "mandatory": "left_shift", "optional": ["any"] }
-                                },
+                                "from": { "key_code": "k" },
                                 "to": [{ "mouse_key": { "vertical_wheel": -64 } }],
                                 "conditions": [
                                     {
                                         "type": "variable_if",
                                         "name": "vim_mode",
-                                        "value": 1
+                                        "value": 2
                                     }
                                 ]
                             },
                             {
                                 "type": "basic",
-                                "from": {
-                                    "key_code": "j",
-                                    "modifiers": { "mandatory": "left_shift", "optional": ["any"] }
-                                },
+                                "from": { "key_code": "j" },
                                 "to": [{ "mouse_key": { "vertical_wheel": 64 } }],
                                 "conditions": [
                                     {
                                         "type": "variable_if",
                                         "name": "vim_mode",
-                                        "value": 1
+                                        "value": 2
                                     }
                                 ]
                             },
                             {
                                 "type": "basic",
-                                "from": {
-                                    "key_code": "h",
-                                    "modifiers": { "mandatory": "left_shift", "optional": ["any"] }
-                                },
-                                "to": [{ "mouse_key": { "horizontal_wheel": 32 } }],
+                                "from": { "key_code": "h" },
+                                "to": [{ "mouse_key": { "horizontal_wheel": 64 } }],
                                 "conditions": [
                                     {
                                         "type": "variable_if",
                                         "name": "vim_mode",
-                                        "value": 1
+                                        "value": 2
                                     }
                                 ]
                             },
                             {
                                 "type": "basic",
-                                "from": {
-                                    "key_code": "l",
-                                    "modifiers": { "mandatory": "left_shift", "optional": ["any"] }
-                                },
-                                "to": [{ "mouse_key": { "horizontal_wheel": -32 } }],
+                                "from": { "key_code": "l" },
+                                "to": [{ "mouse_key": { "horizontal_wheel": -64 } }],
                                 "conditions": [
                                     {
                                         "type": "variable_if",
                                         "name": "vim_mode",
-                                        "value": 1
+                                        "value": 2
                                     }
                                 ]
                             }
@@ -355,6 +358,54 @@
                                     ]
                                 },
                                 "to": [{ "mouse_key": { "x": 6144 } }]
+                            },
+                            {
+                                "type": "basic",
+                                "from": { "key_code": "d" },
+                                "to": [{ "mouse_key": { "y": -6144 } }],
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "vim_mode",
+                                        "value": 2
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": { "key_code": "s" },
+                                "to": [{ "mouse_key": { "y": 6144 } }],
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "vim_mode",
+                                        "value": 2
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": { "key_code": "a" },
+                                "to": [{ "mouse_key": { "x": -6144 } }],
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "vim_mode",
+                                        "value": 2
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "basic",
+                                "from": { "key_code": "f" },
+                                "to": [{ "mouse_key": { "x": 6144 } }],
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "vim_mode",
+                                        "value": 2
+                                    }
+                                ]
                             }
                         ]
                     }
